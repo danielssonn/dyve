@@ -1,0 +1,9 @@
+type = "webhook"
+schemaVersion = 1
+name = "HookUpHRBridge4"
+externalJobID = "25d7d2d2-6a63-4c6e-89cc-25aaf1947fd2"
+observationSource = """
+fetch        [type=bridge name="HRBridge4" requestData="{\\"id\\": \\"0\\", \\"data\\": { \\"from\\": \\"ETH\\",  \\"to\\": \\"USD\\"}}"]
+
+    fetch
+"""

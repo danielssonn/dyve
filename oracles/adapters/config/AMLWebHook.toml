@@ -1,0 +1,9 @@
+type = "webhook"
+schemaVersion = 1
+name = "HookUpAMLBridge"
+externalJobID = "f588a09e-7b85-4a2a-addd-91ae4c603e82"
+observationSource = """
+fetch        [type=bridge name="AMLBridge" requestData="{\\"id\\": \\"0\\", \\"data\\": { \\"from\\": \\"ETH\\",  \\"to\\": \\"USD\\"}}"]
+
+    fetch
+"""

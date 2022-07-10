@@ -1,0 +1,11 @@
+# this is a job that can ad-hoc hit the external adapter via the reference-bridge 
+
+type = "webhook"
+schemaVersion = 1
+name = "HookMeUp2"
+externalJobID = "c0919164-e99f-44db-b2b3-327617559ad8"
+observationSource = """
+fetch        [type=bridge name="reference-bridge" requestData="{\\"id\\": \\"0\\", \\"data\\": { \\"from\\": \\"ETH\\",  \\"to\\": \\"USD\\"}}"]
+
+    fetch
+"""
