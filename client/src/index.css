@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;900&family=Montserrat:wght@400;600;900&display=swap');
+
+* html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon{
+  border-radius: 50%;
+background: linear-gradient(145deg, #ffffff, #e6e6e6);
+box-shadow:  25px 25px 49px #d4d4d4,
+             -25px -25px 49px #ffffff;
+}
+
+.underline-behind{
+  background: linear-gradient(#f7d011, #f7d011) 0 90% / 100% 12px no-repeat;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
