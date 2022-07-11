@@ -2,7 +2,7 @@ const { version } = require("chai");
 
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
-require('dotenv').config({ path: '../../.env' })
+require('dotenv').config({ path: '../.env' })
 
 /**
  * .env file
