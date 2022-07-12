@@ -10,30 +10,25 @@ describe("NFTPool setup", function () {
         NFTPool = await hre.ethers.getContractFactory("NFTPool");
         nftPool = await NFTPool.deploy()
 
-        NFTTkn = await hre.ethers.getContractFactory("SimpleERC721");
+        NFTTkn = await hre.ethers.getContractFactory("SimpleToken");
         nftTkn = await NFTTkn.deploy()
     })
 
     it("Should add NFT token to pool and retrieve one", async function () {
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-        // mint a token
-        mintedTkn = await nftTkn.mintNFT(owner.address, "https://gateway.pinata.cloud/ipfs/QmXreJ8rdSBihsDSVKkNG4J44VDJ8Et6bDsKdmBdfGyXH1");
-        expect(mintedTkn).to.be.ok;
-        // add it to pool
-        await (nftPool.listNFT(nftTkn.address, 1, 2));
-
+        await (nftTkn.setApprovalForAll(nftPool.address, true));
+        // address of NFT, ID, amount t                
+        await (nftPool.listNFT(nftTkn.address, 0, 1, 2));
         // retrieve it from pool based on index
-        expect(await nftPool.listedNFTCount(owner.address)).to.equal(1)
+        expect(await nftPool.listedNFTCount(owner.address)).to.equal(1);
 
     });
 
-    it("Should add NFT tokens to pool and retrieve all", async function () {
+    it("Should add another NFT token to pool and retrieve two", async function () {
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-        // mint a token
-
-        // add it to pool
-
+        await (nftPool.listNFT(nftTkn.address, 1, 1, 2));
         // retrieve it from pool based on index
+        expect(await nftPool.listedNFTCount(owner.address)).to.equal(2);
 
     });
 
