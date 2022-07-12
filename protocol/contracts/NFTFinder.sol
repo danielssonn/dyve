@@ -9,5 +9,9 @@ import "./NFTListing.sol";
 Finds another NFT that is just like the listed one
  */
 contract NFTFinder is Ownable {
-    function find(NFTListing memory findLikeThis) internal returns (ERC1155) {}
+    function find(NFTListing memory findLikeThis) internal returns (ERC1155) {
+        // find new NFT anywhere in the marketplace across chains.
+        // Orchestrate NFTPort, OpenSea scan, Reservoir.tools etc.
+        // Message when found
+    }
 }

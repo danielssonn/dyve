@@ -6,7 +6,11 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./interfaces/NFTUtility.sol";
 
 contract NFTShort is Ownable, NFTUtility {
-    function sell() internal returns (bool) {}
+    function sell() internal returns (bool) {
+        // message all parties it is sold!
+    }
 
-    function buy() internal returns (bool) {}
+    function buy() internal returns (bool) {
+        // message all parties it is bought!
+    }
 }
