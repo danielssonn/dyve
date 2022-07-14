@@ -35,8 +35,7 @@ contract NFTPool is Ownable, ERC1155Receiver {
             tknAddress,
             tknId,
             atAmount,
-            listingLength,
-            block.timestamp
+            listingLength
         );
 
         // 3. Transfer the NFT to this contravt

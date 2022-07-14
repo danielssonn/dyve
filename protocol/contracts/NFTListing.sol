@@ -10,7 +10,6 @@ struct NFTListing {
     uint256 tknId;
     uint256 amount;
     uint256 listingLength;
-    uint256 timestamp;
 }
 
 struct NFTCollateral {
