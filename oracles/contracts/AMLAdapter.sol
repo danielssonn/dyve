@@ -28,7 +28,7 @@ contract AMLAdapter is ChainlinkClient {
      * Create a Chainlink request to retrieve API responset
      *
      */
-    function requestAMLCheck(address checkThisAddress)
+    function requestAMLChecks(address checkThisAddress)
         public
         returns (bytes32 requestId)
     {
