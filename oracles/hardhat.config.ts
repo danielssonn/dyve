@@ -1,8 +1,12 @@
-const { version } = require("chai");
-
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-etherscan");
-require('dotenv').config({ path: '../../.env' })
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
+import "@typechain/hardhat";
+import "hardhat-deploy";
+import "hardhat-abi-exporter"
+import "./tasks";
+import * as dotenv from "dotenv";
+dotenv.config({ path: "../.env" });
 
 /**
  * .env file
@@ -14,18 +18,11 @@ require('dotenv').config({ path: '../../.env' })
 const { ALCHEMY_API_KEY_KOVAN, ALCHEMY_API_KEY_RINKEBY, PRIVATE_KEY, ETHERSCAN_API_KEY, ALCHEMY_API_KEY_MAINNET } = process.env;
 
 
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
-
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
-module.exports = {
+const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       { version: "0.8.7", },
@@ -49,6 +46,17 @@ module.exports = {
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY
+  },
+  abiExporter: {
+    path: './data/abi',
+    runOnCompile: true,
+    clear: true,
+    flat: true,
+    spacing: 2,
+    format: "json"
+
   }
 
 };
+
+export default config;
