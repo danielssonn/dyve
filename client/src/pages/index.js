@@ -1,1 +1,6 @@
 export { default as Landing } from './Landing'
+export { default as Dashboard } from './Dashboard'
+export { default as ConnectWallet } from './ConnectWallet'
+export { default as Collections } from './Collections'
+export { default as Gallery } from './Gallery'
+export { default as Nft } from './Nft'

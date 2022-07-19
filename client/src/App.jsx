@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
-import { Landing } from './pages'
+import { Outlet } from "react-router-dom";
+import { TopBar, SideBar } from './components'
+
 
 const App = () => {
   useEffect(() => {
@@ -9,8 +11,9 @@ const App = () => {
   }, [])
 
   return (
-    <div className="min-h-screen">
-      <Landing />
+    <div>
+      <SideBar />
+      <TopBar />
     </div>
   )
 }
