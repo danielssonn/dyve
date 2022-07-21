@@ -1,26 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, UseParams } from "react-router-dom";
 
-import {nfts as nftData} from '../data';
+import {nfts} from '../data';
 
 const Gallery = () => {
     const params = useParams()
-    const thisCollection = nftData.find(nft => nft.collection === parseInt(params.collection))
-
+    const thisCollection = nftData.find(collection => collection.id === params.collection)
     return (
         <div className="bg-dashboard">
-            <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="py-10">
-                    <h1 className="mt-4 text-xl text-gray-700">Gallery</h1>
-                </div>
-                <div className="flex pb-10 space-x-4">
-                    <p className='px-4 py-1 bg-white rounded-md'>Rarity</p>
-                    <p className='px-4 py-1 bg-white rounded-md'>Max Offer</p>
-                    <p className='px-4 py-1 bg-white rounded-md'>Sort</p>
-                    <p className='px-4 py-1 bg-white rounded-md'>Alphabetical</p>
-                </div>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="py-10">
+                <h1 className="mt-4 text-xl text-gray-700">{collection.collection} Gallery</h1>
+            </div>
+            <div className="flex pb-10 space-x-4">
+                <p className='px-4 py-1 bg-white rounded-md'>Rarity</p>
+                <p className='px-4 py-1 bg-white rounded-md'>Max Offer</p>
+                <p className='px-4 py-1 bg-white rounded-md'>Sort</p>
+            </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {thisCollection.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
+                    {thisCollection.map((collection) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
                     <Link to={`/${nft.collection}/${nft.id}`}>
                         <div className="relative w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                             <img

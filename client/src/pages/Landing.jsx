@@ -32,7 +32,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="animate-fade bg-dashboard bg-contain bg-repeat-x w-full h-90v flex flex-col justify-center items-center">
+    <div className="animate-fade bg-white bg-dashboard bg-contain bg-repeat-x w-full h-90v flex flex-col justify-center items-center">
       <h1 className="font-semibold text-2xl text-stone-500 uppercase">Welcome to</h1>
 
       {/* Dapp name */}
