@@ -27,28 +27,53 @@ import type {
   PromiseOrValue,
 } from "../common";
 
+export type NFTCollateralStruct = {
+  amount: PromiseOrValue<BigNumberish>;
+  currency: PromiseOrValue<string>;
+};
+
+export type NFTCollateralStructOutput = [BigNumber, string] & {
+  amount: BigNumber;
+  currency: string;
+};
+
 export type NFTListingStruct = {
+  listedOn: PromiseOrValue<BigNumberish>;
   tknAddress: PromiseOrValue<string>;
   tknId: PromiseOrValue<BigNumberish>;
-  amount: PromiseOrValue<BigNumberish>;
-  listingLength: PromiseOrValue<BigNumberish>;
+  compliance: PromiseOrValue<string>;
+  dailyFee: PromiseOrValue<BigNumberish>;
+  returnCondition: PromiseOrValue<BigNumberish>;
+  expiry: PromiseOrValue<BigNumberish>;
+  collateral: NFTCollateralStruct;
 };
 
 export type NFTListingStructOutput = [
+  BigNumber,
   string,
   BigNumber,
+  string,
   BigNumber,
-  BigNumber
+  number,
+  BigNumber,
+  NFTCollateralStructOutput
 ] & {
+  listedOn: BigNumber;
   tknAddress: string;
   tknId: BigNumber;
-  amount: BigNumber;
-  listingLength: BigNumber;
+  compliance: string;
+  dailyFee: BigNumber;
+  returnCondition: number;
+  expiry: BigNumber;
+  collateral: NFTCollateralStructOutput;
 };
 
 export interface NFTLoansInterface extends utils.Interface {
   functions: {
+    "borrow(address,(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
+    "borrowAt(address,(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)),uint256)": FunctionFragment;
     "loanedNFT(address,uint256)": FunctionFragment;
+    "loanedNFTCount(address)": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
@@ -56,15 +81,34 @@ export interface NFTLoansInterface extends utils.Interface {
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "borrow"
+      | "borrowAt"
       | "loanedNFT"
+      | "loanedNFTCount"
       | "owner"
       | "renounceOwnership"
       | "transferOwnership"
   ): FunctionFragment;
 
   encodeFunctionData(
+    functionFragment: "borrow",
+    values: [PromiseOrValue<string>, NFTListingStruct]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "borrowAt",
+    values: [
+      PromiseOrValue<string>,
+      NFTListingStruct,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
+  encodeFunctionData(
     functionFragment: "loanedNFT",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "loanedNFTCount",
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
@@ -76,7 +120,13 @@ export interface NFTLoansInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
 
+  decodeFunctionResult(functionFragment: "borrow", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "borrowAt", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "loanedNFT", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "loanedNFTCount",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
@@ -133,11 +183,37 @@ export interface NFTLoans extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    borrow(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    borrowAt(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     loanedNFT(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[NFTListingStructOutput] & { listing: NFTListingStructOutput }>;
+    ): Promise<
+      [BigNumber, NFTListingStructOutput, BigNumber, BigNumber, BigNumber] & {
+        borrowedOn: BigNumber;
+        listing: NFTListingStructOutput;
+        paid: BigNumber;
+        sold: BigNumber;
+        PL: BigNumber;
+      }
+    >;
+
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     owner(overrides?: CallOverrides): Promise<[string]>;
 
@@ -151,11 +227,37 @@ export interface NFTLoans extends BaseContract {
     ): Promise<ContractTransaction>;
   };
 
+  borrow(
+    borrower: PromiseOrValue<string>,
+    listing: NFTListingStruct,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  borrowAt(
+    borrower: PromiseOrValue<string>,
+    listing: NFTListingStruct,
+    time: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   loanedNFT(
     arg0: PromiseOrValue<string>,
     arg1: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
-  ): Promise<NFTListingStructOutput>;
+  ): Promise<
+    [BigNumber, NFTListingStructOutput, BigNumber, BigNumber, BigNumber] & {
+      borrowedOn: BigNumber;
+      listing: NFTListingStructOutput;
+      paid: BigNumber;
+      sold: BigNumber;
+      PL: BigNumber;
+    }
+  >;
+
+  loanedNFTCount(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   owner(overrides?: CallOverrides): Promise<string>;
 
@@ -169,11 +271,37 @@ export interface NFTLoans extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    borrow(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    borrowAt(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     loanedNFT(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<NFTListingStructOutput>;
+    ): Promise<
+      [BigNumber, NFTListingStructOutput, BigNumber, BigNumber, BigNumber] & {
+        borrowedOn: BigNumber;
+        listing: NFTListingStructOutput;
+        paid: BigNumber;
+        sold: BigNumber;
+        PL: BigNumber;
+      }
+    >;
+
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<string>;
 
@@ -197,9 +325,27 @@ export interface NFTLoans extends BaseContract {
   };
 
   estimateGas: {
+    borrow(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    borrowAt(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     loanedNFT(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -216,9 +362,27 @@ export interface NFTLoans extends BaseContract {
   };
 
   populateTransaction: {
+    borrow(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    borrowAt(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     loanedNFT(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 

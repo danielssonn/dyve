@@ -7,7 +7,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const { deployer } = await getNamedAccounts();
 
-  await deploy("NFTFinder", {
+  await deploy("NFTPool", {
     from: deployer,
     log: true,
   });
@@ -15,4 +15,4 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 };
 
 export default func;
-func.tags = ["NFTFinder"];
+func.tags = ["NFTPool"];
