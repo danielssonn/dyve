@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom'
 
-import {nfts as nftData} from '../data';
+import { nfts as nftData } from '../data'
 
 const Gallery = () => {
-    const params = useParams()
-    const thisCollection = nftData.find(nft => nft.collection === parseInt(params.collection))
+  const params = useParams()
+  const thisCollection = nftData.find(nft => nft.collection === params.collection)
 
-    return (
+  return (
         <div className="bg-dashboard">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
@@ -55,7 +55,7 @@ space-x-3'>
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
 export default Gallery

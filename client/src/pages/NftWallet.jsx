@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import {nfts as nftData} from '../data'
 import { CreateListingModal } from '../components'
 
-const Nft = () => {
+const NftWallet = () => {
     const params = useParams()
     const thisNFT = nftData.find(nft => nft.id === parseInt(params.id))
 
@@ -64,13 +64,10 @@ const Nft = () => {
                         <h3 className="col-start-5 col-span-2">00</h3>
                     </div>
                     <div className="width-full bg-slate-50 text-right mt-4 p-4">Net of Sale</div>
-                    <div className="absolute right-0 mt-6">
-                        <button
-                              onClick={() => setShowModal(true)}
-                              className="py-2 px-6 font-semibold text-white border bg-[#0778E0] rounded-lg flex items-center  hover:opacity-75"
-                              >
-                          Execute Position
-                        </button>
+                    <div
+                        className="absolute right-0 mt-6"
+                        >
+                        <CreateListingModal {...thisNFT} />
                     </div>
                 </div>
 
@@ -79,4 +76,4 @@ const Nft = () => {
     )
 }
 
-export default Nft
+export default NftWallet

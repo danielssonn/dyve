@@ -25,12 +25,11 @@ const TopBar = (prop) => {
 
           <div className="p-4 pr-0">
           <Link to="/mynfts"><button
-              className="py-2 px-6 font-semibold text-white border bg-[#0778E0] rounded-lg flex items-center  hover:opacity-75"
+              className="py-2 px-6 font-semibold text-white border bg-[#0778E0] rounded-lg flex items-center hover:opacity-75"
             >
               My NFT's
             </button></Link>
           </div>
-          
           <div className="p-4">
             <ConnectWalletModal />
           </div>
