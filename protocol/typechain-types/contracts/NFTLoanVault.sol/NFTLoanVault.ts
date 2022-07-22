@@ -25,7 +25,7 @@ import type {
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../common";
+} from "../../common";
 
 export type NFTCollateralStruct = {
   amount: PromiseOrValue<BigNumberish>;
@@ -68,59 +68,49 @@ export type NFTListingStructOutput = [
   collateral: NFTCollateralStructOutput;
 };
 
-export type NFTRecommendationStruct = {
-  listing: NFTListingStruct;
-  tknAddress: PromiseOrValue<string>;
-  tknId: PromiseOrValue<BigNumberish>;
-};
-
-export type NFTRecommendationStructOutput = [
-  NFTListingStructOutput,
-  string,
-  BigNumber
-] & { listing: NFTListingStructOutput; tknAddress: string; tknId: BigNumber };
-
-export interface NFTFinderInterface extends utils.Interface {
+export interface NFTLoanVaultInterface extends utils.Interface {
   functions: {
-    "getMatch((uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
-    "getMatchingTknId((uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
+    "borrow(address,(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
+    "borrowAt(address,(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)),uint256)": FunctionFragment;
+    "loanedNFT(address,uint256)": FunctionFragment;
+    "loanedNFTCount(address)": FunctionFragment;
     "owner()": FunctionFragment;
-    "recommendation(uint256)": FunctionFragment;
-    "register((uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "updateMatch((uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)),address,uint256)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "getMatch"
-      | "getMatchingTknId"
+      | "borrow"
+      | "borrowAt"
+      | "loanedNFT"
+      | "loanedNFTCount"
       | "owner"
-      | "recommendation"
-      | "register"
       | "renounceOwnership"
       | "transferOwnership"
-      | "updateMatch"
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "getMatch",
-    values: [NFTListingStruct]
+    functionFragment: "borrow",
+    values: [PromiseOrValue<string>, NFTListingStruct]
   ): string;
   encodeFunctionData(
-    functionFragment: "getMatchingTknId",
-    values: [NFTListingStruct]
+    functionFragment: "borrowAt",
+    values: [
+      PromiseOrValue<string>,
+      NFTListingStruct,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "loanedNFT",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "loanedNFTCount",
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "recommendation",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "register",
-    values: [NFTListingStruct]
-  ): string;
   encodeFunctionData(
     functionFragment: "renounceOwnership",
     values?: undefined
@@ -129,36 +119,21 @@ export interface NFTFinderInterface extends utils.Interface {
     functionFragment: "transferOwnership",
     values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(
-    functionFragment: "updateMatch",
-    values: [
-      NFTListingStruct,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
 
-  decodeFunctionResult(functionFragment: "getMatch", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "borrow", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "borrowAt", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "loanedNFT", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getMatchingTknId",
+    functionFragment: "loanedNFTCount",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "recommendation",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "register", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "updateMatch",
     data: BytesLike
   ): Result;
 
@@ -181,12 +156,12 @@ export type OwnershipTransferredEvent = TypedEvent<
 export type OwnershipTransferredEventFilter =
   TypedEventFilter<OwnershipTransferredEvent>;
 
-export interface NFTFinder extends BaseContract {
+export interface NFTLoanVault extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: NFTFinderInterface;
+  interface: NFTLoanVaultInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -208,33 +183,39 @@ export interface NFTFinder extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    getMatch(
+    borrow(
+      borrower: PromiseOrValue<string>,
       listing: NFTListingStruct,
-      overrides?: CallOverrides
-    ): Promise<[NFTRecommendationStructOutput]>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
 
-    getMatchingTknId(
+    borrowAt(
+      borrower: PromiseOrValue<string>,
       listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    loanedNFT(
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<
+      [BigNumber, NFTListingStructOutput, BigNumber, BigNumber, BigNumber] & {
+        borrowedOn: BigNumber;
+        listing: NFTListingStructOutput;
+        paid: BigNumber;
+        sold: BigNumber;
+        PL: BigNumber;
+      }
+    >;
+
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
     owner(overrides?: CallOverrides): Promise<[string]>;
-
-    recommendation(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [NFTListingStructOutput, string, BigNumber] & {
-        listing: NFTListingStructOutput;
-        tknAddress: string;
-        tknId: BigNumber;
-      }
-    >;
-
-    register(
-      listing: NFTListingStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -244,42 +225,41 @@ export interface NFTFinder extends BaseContract {
       newOwner: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
-    updateMatch(
-      listing: NFTListingStruct,
-      recommendedCollection: PromiseOrValue<string>,
-      recommendedId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
   };
 
-  getMatch(
+  borrow(
+    borrower: PromiseOrValue<string>,
     listing: NFTListingStruct,
-    overrides?: CallOverrides
-  ): Promise<NFTRecommendationStructOutput>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
-  getMatchingTknId(
+  borrowAt(
+    borrower: PromiseOrValue<string>,
     listing: NFTListingStruct,
+    time: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  loanedNFT(
+    arg0: PromiseOrValue<string>,
+    arg1: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<
+    [BigNumber, NFTListingStructOutput, BigNumber, BigNumber, BigNumber] & {
+      borrowedOn: BigNumber;
+      listing: NFTListingStructOutput;
+      paid: BigNumber;
+      sold: BigNumber;
+      PL: BigNumber;
+    }
+  >;
+
+  loanedNFTCount(
+    arg0: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
   owner(overrides?: CallOverrides): Promise<string>;
-
-  recommendation(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [NFTListingStructOutput, string, BigNumber] & {
-      listing: NFTListingStructOutput;
-      tknAddress: string;
-      tknId: BigNumber;
-    }
-  >;
-
-  register(
-    listing: NFTListingStruct,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
 
   renounceOwnership(
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -290,53 +270,45 @@ export interface NFTFinder extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  updateMatch(
-    listing: NFTListingStruct,
-    recommendedCollection: PromiseOrValue<string>,
-    recommendedId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   callStatic: {
-    getMatch(
+    borrow(
+      borrower: PromiseOrValue<string>,
       listing: NFTListingStruct,
       overrides?: CallOverrides
-    ): Promise<NFTRecommendationStructOutput>;
+    ): Promise<void>;
 
-    getMatchingTknId(
+    borrowAt(
+      borrower: PromiseOrValue<string>,
       listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    loanedNFT(
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<
+      [BigNumber, NFTListingStructOutput, BigNumber, BigNumber, BigNumber] & {
+        borrowedOn: BigNumber;
+        listing: NFTListingStructOutput;
+        paid: BigNumber;
+        sold: BigNumber;
+        PL: BigNumber;
+      }
+    >;
+
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<string>;
 
-    recommendation(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [NFTListingStructOutput, string, BigNumber] & {
-        listing: NFTListingStructOutput;
-        tknAddress: string;
-        tknId: BigNumber;
-      }
-    >;
-
-    register(
-      listing: NFTListingStruct,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    updateMatch(
-      listing: NFTListingStruct,
-      recommendedCollection: PromiseOrValue<string>,
-      recommendedId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -353,67 +325,68 @@ export interface NFTFinder extends BaseContract {
   };
 
   estimateGas: {
-    getMatch(
+    borrow(
+      borrower: PromiseOrValue<string>,
       listing: NFTListingStruct,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    borrowAt(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    loanedNFT(
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getMatchingTknId(
-      listing: NFTListingStruct,
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
-    recommendation(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    register(
-      listing: NFTListingStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    updateMatch(
-      listing: NFTListingStruct,
-      recommendedCollection: PromiseOrValue<string>,
-      recommendedId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    getMatch(
+    borrow(
+      borrower: PromiseOrValue<string>,
       listing: NFTListingStruct,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    borrowAt(
+      borrower: PromiseOrValue<string>,
+      listing: NFTListingStruct,
+      time: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    loanedNFT(
+      arg0: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getMatchingTknId(
-      listing: NFTListingStruct,
+    loanedNFTCount(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    recommendation(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    register(
-      listing: NFTListingStruct,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -421,13 +394,6 @@ export interface NFTFinder extends BaseContract {
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    updateMatch(
-      listing: NFTListingStruct,
-      recommendedCollection: PromiseOrValue<string>,
-      recommendedId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };

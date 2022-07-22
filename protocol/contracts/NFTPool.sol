@@ -25,8 +25,6 @@ contract NFTPool is Ownable, ERC1155Receiver {
         uint256 listedOn,
         address tknAddress,
         uint256 tknId,
-        uint256 atAmount,
-        uint256 listingLength,
         string memory complianceCheck,
         uint256 dailyFee,
         ReturnCondition returnCondition,
@@ -41,8 +39,6 @@ contract NFTPool is Ownable, ERC1155Receiver {
             listedOn,
             tknAddress,
             tknId,
-            atAmount,
-            listingLength,
             complianceCheck,
             dailyFee,
             returnCondition,
@@ -50,20 +46,20 @@ contract NFTPool is Ownable, ERC1155Receiver {
             collateral
         );
 
-        // 3. Transfer the NFT to this contravt
-        IERC1155(tknAddress).safeTransferFrom(
-            msg.sender,
-            address(this),
-            tknId,
-            atAmount,
-            "0x00"
-        );
+        // 3. Transfer the NFT to this contract
+        // IERC1155(tknAddress).safeTransferFrom(
+        //     msg.sender,
+        //     address(this),
+        //     tknId,
+        //     atAmount,
+        //     "0x00"
+        // );
     }
 
     /**
-    Retrieve all token listings
+    Retrieve all listings
      */
-    function getAllListedNFTs(address lender)
+    function getListedNFTs(address lender)
         public
         view
         returns (NFTListing[] memory)

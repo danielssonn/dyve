@@ -9,8 +9,6 @@ struct NFTListing {
     uint256 listedOn;
     address tknAddress;
     uint256 tknId;
-    uint256 amount;
-    uint256 listingLength;
     string compliance;
     uint256 dailyFee;
     ReturnCondition returnCondition;

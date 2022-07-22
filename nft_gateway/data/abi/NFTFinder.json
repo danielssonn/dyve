@@ -38,16 +38,6 @@
             "type": "uint256"
           },
           {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "listingLength",
-            "type": "uint256"
-          },
-          {
             "internalType": "string",
             "name": "compliance",
             "type": "string"
@@ -109,16 +99,6 @@
               {
                 "internalType": "uint256",
                 "name": "tknId",
-                "type": "uint256"
-              },
-              {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-              },
-              {
-                "internalType": "uint256",
-                "name": "listingLength",
                 "type": "uint256"
               },
               {
@@ -202,16 +182,6 @@
             "type": "uint256"
           },
           {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "listingLength",
-            "type": "uint256"
-          },
-          {
             "internalType": "string",
             "name": "compliance",
             "type": "string"
@@ -254,7 +224,7 @@
         "type": "tuple"
       }
     ],
-    "name": "getMatchTknId",
+    "name": "getMatchingTknId",
     "outputs": [
       {
         "internalType": "uint256",
@@ -303,16 +273,6 @@
           {
             "internalType": "uint256",
             "name": "tknId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "listingLength",
             "type": "uint256"
           },
           {
@@ -388,16 +348,6 @@
           {
             "internalType": "uint256",
             "name": "tknId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "listingLength",
             "type": "uint256"
           },
           {
@@ -485,16 +435,6 @@
           {
             "internalType": "uint256",
             "name": "tknId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "listingLength",
             "type": "uint256"
           },
           {

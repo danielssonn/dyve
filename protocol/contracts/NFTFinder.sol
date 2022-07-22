@@ -27,8 +27,8 @@ contract NFTFinder is Ownable {
             if (
                 (registry[i].tknAddress == listing.tknAddress) &&
                 (registry[i].tknId == listing.tknId) &&
-                (registry[i].amount == listing.amount) &&
-                (registry[i].listingLength == listing.listingLength)
+                (registry[i].dailyFee == listing.dailyFee) &&
+                (registry[i].expiry == listing.expiry)
             ) {
                 alreadyRegistered = true;
             }
@@ -79,7 +79,7 @@ contract NFTFinder is Ownable {
         return NFTRecommendation(listing, address(0), 0);
     }
 
-    function getMatchTknId(NFTListing memory listing)
+    function getMatchingTknId(NFTListing memory listing)
         public
         view
         returns (uint256)

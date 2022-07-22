@@ -22,12 +22,9 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "lender",
+        "name": "borrower",
         "type": "address"
-      }
-    ],
-    "name": "getListedNFTs",
-    "outputs": [
+      },
       {
         "components": [
           {
@@ -83,70 +80,89 @@
             "type": "tuple"
           }
         ],
-        "internalType": "struct NFTListing[]",
-        "name": "",
-        "type": "tuple[]"
+        "internalType": "struct NFTListing",
+        "name": "listing",
+        "type": "tuple"
       }
     ],
-    "stateMutability": "view",
+    "name": "borrow",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "listedOn",
-        "type": "uint256"
-      },
-      {
         "internalType": "address",
-        "name": "tknAddress",
+        "name": "borrower",
         "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "tknId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "complianceCheck",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "dailyFee",
-        "type": "uint256"
-      },
-      {
-        "internalType": "enum ReturnCondition",
-        "name": "returnCondition",
-        "type": "uint8"
-      },
-      {
-        "internalType": "uint256",
-        "name": "expiry",
-        "type": "uint256"
       },
       {
         "components": [
           {
             "internalType": "uint256",
-            "name": "amount",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
             "type": "uint256"
           },
           {
             "internalType": "string",
-            "name": "currency",
+            "name": "compliance",
             "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
           }
         ],
-        "internalType": "struct NFTCollateral",
-        "name": "collateral",
+        "internalType": "struct NFTListing",
+        "name": "listing",
         "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "time",
+        "type": "uint256"
       }
     ],
-    "name": "listNFT",
+    "name": "borrowAt",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -164,77 +180,85 @@
         "type": "uint256"
       }
     ],
-    "name": "listedNFT",
+    "name": "loanedNFT",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "listedOn",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "tknAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "tknId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "compliance",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "dailyFee",
-        "type": "uint256"
-      },
-      {
-        "internalType": "enum ReturnCondition",
-        "name": "returnCondition",
-        "type": "uint8"
-      },
-      {
-        "internalType": "uint256",
-        "name": "expiry",
+        "name": "borrowedOn",
         "type": "uint256"
       },
       {
         "components": [
           {
             "internalType": "uint256",
-            "name": "amount",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
             "type": "uint256"
           },
           {
             "internalType": "string",
-            "name": "currency",
+            "name": "compliance",
             "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
           }
         ],
-        "internalType": "struct NFTCollateral",
-        "name": "collateral",
+        "internalType": "struct NFTListing",
+        "name": "listing",
         "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "listedNFTCount",
-    "outputs": [
+      },
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "paid",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "sold",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "PL",
         "type": "uint256"
       }
     ],
@@ -245,78 +269,19 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "operator",
+        "name": "",
         "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "ids",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "values",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
       }
     ],
-    "name": "onERC1155BatchReceived",
+    "name": "loanedNFTCount",
     "outputs": [
       {
-        "internalType": "bytes4",
-        "name": "",
-        "type": "bytes4"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "operator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
         "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
-      },
-      {
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
-      }
-    ],
-    "name": "onERC1155Received",
-    "outputs": [
-      {
-        "internalType": "bytes4",
         "name": "",
-        "type": "bytes4"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -337,25 +302,6 @@
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes4",
-        "name": "interfaceId",
-        "type": "bytes4"
-      }
-    ],
-    "name": "supportsInterface",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
