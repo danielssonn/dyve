@@ -27,23 +27,51 @@ import type {
   PromiseOrValue,
 } from "../common";
 
+export type NFTCollateralStruct = {
+  amount: PromiseOrValue<BigNumberish>;
+  currency: PromiseOrValue<string>;
+};
+
+export type NFTCollateralStructOutput = [BigNumber, string] & {
+  amount: BigNumber;
+  currency: string;
+};
+
 export type NFTListingStruct = {
+  listedOn: PromiseOrValue<BigNumberish>;
   tknAddress: PromiseOrValue<string>;
   tknId: PromiseOrValue<BigNumberish>;
   amount: PromiseOrValue<BigNumberish>;
   listingLength: PromiseOrValue<BigNumberish>;
+  compliance: PromiseOrValue<string>;
+  dailyFee: PromiseOrValue<BigNumberish>;
+  returnCondition: PromiseOrValue<BigNumberish>;
+  expiry: PromiseOrValue<BigNumberish>;
+  collateral: NFTCollateralStruct;
 };
 
 export type NFTListingStructOutput = [
+  BigNumber,
   string,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
+  string,
+  BigNumber,
+  number,
+  BigNumber,
+  NFTCollateralStructOutput
 ] & {
+  listedOn: BigNumber;
   tknAddress: string;
   tknId: BigNumber;
   amount: BigNumber;
   listingLength: BigNumber;
+  compliance: string;
+  dailyFee: BigNumber;
+  returnCondition: number;
+  expiry: BigNumber;
+  collateral: NFTCollateralStructOutput;
 };
 
 export interface NFTLoansInterface extends utils.Interface {
@@ -137,7 +165,14 @@ export interface NFTLoans extends BaseContract {
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[NFTListingStructOutput] & { listing: NFTListingStructOutput }>;
+    ): Promise<
+      [BigNumber, NFTListingStructOutput, BigNumber, BigNumber] & {
+        borrowedOn: BigNumber;
+        listing: NFTListingStructOutput;
+        paid: BigNumber;
+        sold: BigNumber;
+      }
+    >;
 
     owner(overrides?: CallOverrides): Promise<[string]>;
 
@@ -155,7 +190,14 @@ export interface NFTLoans extends BaseContract {
     arg0: PromiseOrValue<string>,
     arg1: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
-  ): Promise<NFTListingStructOutput>;
+  ): Promise<
+    [BigNumber, NFTListingStructOutput, BigNumber, BigNumber] & {
+      borrowedOn: BigNumber;
+      listing: NFTListingStructOutput;
+      paid: BigNumber;
+      sold: BigNumber;
+    }
+  >;
 
   owner(overrides?: CallOverrides): Promise<string>;
 
@@ -173,7 +215,14 @@ export interface NFTLoans extends BaseContract {
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<NFTListingStructOutput>;
+    ): Promise<
+      [BigNumber, NFTListingStructOutput, BigNumber, BigNumber] & {
+        borrowedOn: BigNumber;
+        listing: NFTListingStructOutput;
+        paid: BigNumber;
+        sold: BigNumber;
+      }
+    >;
 
     owner(overrides?: CallOverrides): Promise<string>;
 

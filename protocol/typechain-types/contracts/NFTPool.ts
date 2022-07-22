@@ -27,29 +27,57 @@ import type {
   PromiseOrValue,
 } from "../common";
 
+export type NFTCollateralStruct = {
+  amount: PromiseOrValue<BigNumberish>;
+  currency: PromiseOrValue<string>;
+};
+
+export type NFTCollateralStructOutput = [BigNumber, string] & {
+  amount: BigNumber;
+  currency: string;
+};
+
 export type NFTListingStruct = {
+  listedOn: PromiseOrValue<BigNumberish>;
   tknAddress: PromiseOrValue<string>;
   tknId: PromiseOrValue<BigNumberish>;
   amount: PromiseOrValue<BigNumberish>;
   listingLength: PromiseOrValue<BigNumberish>;
+  compliance: PromiseOrValue<string>;
+  dailyFee: PromiseOrValue<BigNumberish>;
+  returnCondition: PromiseOrValue<BigNumberish>;
+  expiry: PromiseOrValue<BigNumberish>;
+  collateral: NFTCollateralStruct;
 };
 
 export type NFTListingStructOutput = [
+  BigNumber,
   string,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
+  string,
+  BigNumber,
+  number,
+  BigNumber,
+  NFTCollateralStructOutput
 ] & {
+  listedOn: BigNumber;
   tknAddress: string;
   tknId: BigNumber;
   amount: BigNumber;
   listingLength: BigNumber;
+  compliance: string;
+  dailyFee: BigNumber;
+  returnCondition: number;
+  expiry: BigNumber;
+  collateral: NFTCollateralStructOutput;
 };
 
 export interface NFTPoolInterface extends utils.Interface {
   functions: {
     "getAllListedNFTs(address)": FunctionFragment;
-    "listNFT(address,uint256,uint256,uint256)": FunctionFragment;
+    "listNFT(uint256,address,uint256,uint256,uint256,string,uint256,uint8,uint256,(uint256,string))": FunctionFragment;
     "listedNFT(address,uint256)": FunctionFragment;
     "listedNFTCount(address)": FunctionFragment;
     "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": FunctionFragment;
@@ -81,10 +109,16 @@ export interface NFTPoolInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "listNFT",
     values: [
+      PromiseOrValue<BigNumberish>,
       PromiseOrValue<string>,
       PromiseOrValue<BigNumberish>,
       PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>,
+      NFTCollateralStruct
     ]
   ): string;
   encodeFunctionData(
@@ -213,10 +247,16 @@ export interface NFTPool extends BaseContract {
     ): Promise<[NFTListingStructOutput[]]>;
 
     listNFT(
+      listedOn: PromiseOrValue<BigNumberish>,
       tknAddress: PromiseOrValue<string>,
       tknId: PromiseOrValue<BigNumberish>,
       atAmount: PromiseOrValue<BigNumberish>,
       listingLength: PromiseOrValue<BigNumberish>,
+      complianceCheck: PromiseOrValue<string>,
+      dailyFee: PromiseOrValue<BigNumberish>,
+      returnCondition: PromiseOrValue<BigNumberish>,
+      expiry: PromiseOrValue<BigNumberish>,
+      collateral: NFTCollateralStruct,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -225,11 +265,28 @@ export interface NFTPool extends BaseContract {
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, BigNumber, BigNumber, BigNumber] & {
+      [
+        BigNumber,
+        string,
+        BigNumber,
+        BigNumber,
+        BigNumber,
+        string,
+        BigNumber,
+        number,
+        BigNumber,
+        NFTCollateralStructOutput
+      ] & {
+        listedOn: BigNumber;
         tknAddress: string;
         tknId: BigNumber;
         amount: BigNumber;
         listingLength: BigNumber;
+        compliance: string;
+        dailyFee: BigNumber;
+        returnCondition: number;
+        expiry: BigNumber;
+        collateral: NFTCollateralStructOutput;
       }
     >;
 
@@ -279,10 +336,16 @@ export interface NFTPool extends BaseContract {
   ): Promise<NFTListingStructOutput[]>;
 
   listNFT(
+    listedOn: PromiseOrValue<BigNumberish>,
     tknAddress: PromiseOrValue<string>,
     tknId: PromiseOrValue<BigNumberish>,
     atAmount: PromiseOrValue<BigNumberish>,
     listingLength: PromiseOrValue<BigNumberish>,
+    complianceCheck: PromiseOrValue<string>,
+    dailyFee: PromiseOrValue<BigNumberish>,
+    returnCondition: PromiseOrValue<BigNumberish>,
+    expiry: PromiseOrValue<BigNumberish>,
+    collateral: NFTCollateralStruct,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -291,11 +354,28 @@ export interface NFTPool extends BaseContract {
     arg1: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [string, BigNumber, BigNumber, BigNumber] & {
+    [
+      BigNumber,
+      string,
+      BigNumber,
+      BigNumber,
+      BigNumber,
+      string,
+      BigNumber,
+      number,
+      BigNumber,
+      NFTCollateralStructOutput
+    ] & {
+      listedOn: BigNumber;
       tknAddress: string;
       tknId: BigNumber;
       amount: BigNumber;
       listingLength: BigNumber;
+      compliance: string;
+      dailyFee: BigNumber;
+      returnCondition: number;
+      expiry: BigNumber;
+      collateral: NFTCollateralStructOutput;
     }
   >;
 
@@ -345,10 +425,16 @@ export interface NFTPool extends BaseContract {
     ): Promise<NFTListingStructOutput[]>;
 
     listNFT(
+      listedOn: PromiseOrValue<BigNumberish>,
       tknAddress: PromiseOrValue<string>,
       tknId: PromiseOrValue<BigNumberish>,
       atAmount: PromiseOrValue<BigNumberish>,
       listingLength: PromiseOrValue<BigNumberish>,
+      complianceCheck: PromiseOrValue<string>,
+      dailyFee: PromiseOrValue<BigNumberish>,
+      returnCondition: PromiseOrValue<BigNumberish>,
+      expiry: PromiseOrValue<BigNumberish>,
+      collateral: NFTCollateralStruct,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -357,11 +443,28 @@ export interface NFTPool extends BaseContract {
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, BigNumber, BigNumber, BigNumber] & {
+      [
+        BigNumber,
+        string,
+        BigNumber,
+        BigNumber,
+        BigNumber,
+        string,
+        BigNumber,
+        number,
+        BigNumber,
+        NFTCollateralStructOutput
+      ] & {
+        listedOn: BigNumber;
         tknAddress: string;
         tknId: BigNumber;
         amount: BigNumber;
         listingLength: BigNumber;
+        compliance: string;
+        dailyFee: BigNumber;
+        returnCondition: number;
+        expiry: BigNumber;
+        collateral: NFTCollateralStructOutput;
       }
     >;
 
@@ -421,10 +524,16 @@ export interface NFTPool extends BaseContract {
     ): Promise<BigNumber>;
 
     listNFT(
+      listedOn: PromiseOrValue<BigNumberish>,
       tknAddress: PromiseOrValue<string>,
       tknId: PromiseOrValue<BigNumberish>,
       atAmount: PromiseOrValue<BigNumberish>,
       listingLength: PromiseOrValue<BigNumberish>,
+      complianceCheck: PromiseOrValue<string>,
+      dailyFee: PromiseOrValue<BigNumberish>,
+      returnCondition: PromiseOrValue<BigNumberish>,
+      expiry: PromiseOrValue<BigNumberish>,
+      collateral: NFTCollateralStruct,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -481,10 +590,16 @@ export interface NFTPool extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     listNFT(
+      listedOn: PromiseOrValue<BigNumberish>,
       tknAddress: PromiseOrValue<string>,
       tknId: PromiseOrValue<BigNumberish>,
       atAmount: PromiseOrValue<BigNumberish>,
       listingLength: PromiseOrValue<BigNumberish>,
+      complianceCheck: PromiseOrValue<string>,
+      dailyFee: PromiseOrValue<BigNumberish>,
+      returnCondition: PromiseOrValue<BigNumberish>,
+      expiry: PromiseOrValue<BigNumberish>,
+      collateral: NFTCollateralStruct,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

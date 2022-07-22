@@ -31,6 +31,11 @@
       {
         "components": [
           {
+            "internalType": "uint256",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
             "internalType": "address",
             "name": "tknAddress",
             "type": "address"
@@ -49,6 +54,43 @@
             "internalType": "uint256",
             "name": "listingLength",
             "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "compliance",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
           }
         ],
         "internalType": "struct NFTListing[]",
@@ -61,6 +103,11 @@
   },
   {
     "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "listedOn",
+        "type": "uint256"
+      },
       {
         "internalType": "address",
         "name": "tknAddress",
@@ -80,6 +127,43 @@
         "internalType": "uint256",
         "name": "listingLength",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "complianceCheck",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dailyFee",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum ReturnCondition",
+        "name": "returnCondition",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "expiry",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "currency",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct NFTCollateral",
+        "name": "collateral",
+        "type": "tuple"
       }
     ],
     "name": "listNFT",
@@ -103,6 +187,11 @@
     "name": "listedNFT",
     "outputs": [
       {
+        "internalType": "uint256",
+        "name": "listedOn",
+        "type": "uint256"
+      },
+      {
         "internalType": "address",
         "name": "tknAddress",
         "type": "address"
@@ -121,6 +210,43 @@
         "internalType": "uint256",
         "name": "listingLength",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "compliance",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dailyFee",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum ReturnCondition",
+        "name": "returnCondition",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "expiry",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "currency",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct NFTCollateral",
+        "name": "collateral",
+        "type": "tuple"
       }
     ],
     "stateMutability": "view",

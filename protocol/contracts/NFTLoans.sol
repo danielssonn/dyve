@@ -11,7 +11,10 @@ import "./NFTListing.sol";
 contract NFTLoans is Ownable {
     // Structure to represent loan - from listing to all agreed on conditions
     struct NFTLoan {
+        uint256 borrowedOn;
         NFTListing listing;
+        uint256 paid;
+        uint256 sold;
     }
     //borrower's loans
     mapping(address => mapping(uint256 => NFTLoan)) public loanedNFT;

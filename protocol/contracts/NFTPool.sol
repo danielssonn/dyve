@@ -22,20 +22,32 @@ contract NFTPool is Ownable, ERC1155Receiver {
      *
      */
     function listNFT(
+        uint256 listedOn,
         address tknAddress,
         uint256 tknId,
         uint256 atAmount,
-        uint256 listingLength
+        uint256 listingLength,
+        string memory complianceCheck,
+        uint256 dailyFee,
+        ReturnCondition returnCondition,
+        uint256 expiry,
+        NFTCollateral memory collateral
     ) public {
         // 1. Update the count of listings for this lender
         listedNFTCount[msg.sender] = listedNFTCount[msg.sender] + 1;
         uint256 currentCount = listedNFTCount[msg.sender];
         // 2. List NFT in the Pool
         listedNFT[msg.sender][currentCount] = NFTListing(
+            listedOn,
             tknAddress,
             tknId,
             atAmount,
-            listingLength
+            listingLength,
+            complianceCheck,
+            dailyFee,
+            returnCondition,
+            expiry,
+            collateral
         );
 
         // 3. Transfer the NFT to this contravt

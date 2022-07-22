@@ -27,23 +27,51 @@ import type {
   PromiseOrValue,
 } from "../common";
 
+export type NFTCollateralStruct = {
+  amount: PromiseOrValue<BigNumberish>;
+  currency: PromiseOrValue<string>;
+};
+
+export type NFTCollateralStructOutput = [BigNumber, string] & {
+  amount: BigNumber;
+  currency: string;
+};
+
 export type NFTListingStruct = {
+  listedOn: PromiseOrValue<BigNumberish>;
   tknAddress: PromiseOrValue<string>;
   tknId: PromiseOrValue<BigNumberish>;
   amount: PromiseOrValue<BigNumberish>;
   listingLength: PromiseOrValue<BigNumberish>;
+  compliance: PromiseOrValue<string>;
+  dailyFee: PromiseOrValue<BigNumberish>;
+  returnCondition: PromiseOrValue<BigNumberish>;
+  expiry: PromiseOrValue<BigNumberish>;
+  collateral: NFTCollateralStruct;
 };
 
 export type NFTListingStructOutput = [
+  BigNumber,
   string,
   BigNumber,
   BigNumber,
-  BigNumber
+  BigNumber,
+  string,
+  BigNumber,
+  number,
+  BigNumber,
+  NFTCollateralStructOutput
 ] & {
+  listedOn: BigNumber;
   tknAddress: string;
   tknId: BigNumber;
   amount: BigNumber;
   listingLength: BigNumber;
+  compliance: string;
+  dailyFee: BigNumber;
+  returnCondition: number;
+  expiry: BigNumber;
+  collateral: NFTCollateralStructOutput;
 };
 
 export type NFTRecommendationStruct = {
@@ -60,14 +88,14 @@ export type NFTRecommendationStructOutput = [
 
 export interface NFTFinderInterface extends utils.Interface {
   functions: {
-    "getMatch((address,uint256,uint256,uint256))": FunctionFragment;
-    "getMatchTknId((address,uint256,uint256,uint256))": FunctionFragment;
+    "getMatch((uint256,address,uint256,uint256,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
+    "getMatchTknId((uint256,address,uint256,uint256,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
     "owner()": FunctionFragment;
     "recommendation(uint256)": FunctionFragment;
-    "register((address,uint256,uint256,uint256))": FunctionFragment;
+    "register((uint256,address,uint256,uint256,uint256,string,uint256,uint8,uint256,(uint256,string)))": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "updateMatch((address,uint256,uint256,uint256),address,uint256)": FunctionFragment;
+    "updateMatch((uint256,address,uint256,uint256,uint256,string,uint256,uint8,uint256,(uint256,string)),address,uint256)": FunctionFragment;
   };
 
   getFunction(
