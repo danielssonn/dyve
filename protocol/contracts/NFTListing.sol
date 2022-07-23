@@ -14,6 +14,7 @@ struct NFTListing {
     ReturnCondition returnCondition;
     uint256 expiry;
     NFTCollateral collateral;
+    NFTTraitMach traitMatch;
 }
 
 struct NFTCollateral {
@@ -23,5 +24,11 @@ struct NFTCollateral {
 
 enum ReturnCondition {
     SAME,
-    ANY
+    ANY,
+    TRAIT_MATCH
+}
+
+struct NFTTraitMach {
+    string trait_type;
+    string value;
 }
