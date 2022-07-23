@@ -1,0 +1,498 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "compliance",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct NFTListing",
+        "name": "listing",
+        "type": "tuple"
+      }
+    ],
+    "name": "getMatch",
+    "outputs": [
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "listedOn",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "tknAddress",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "tknId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "compliance",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "dailyFee",
+                "type": "uint256"
+              },
+              {
+                "internalType": "enum ReturnCondition",
+                "name": "returnCondition",
+                "type": "uint8"
+              },
+              {
+                "internalType": "uint256",
+                "name": "expiry",
+                "type": "uint256"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "currency",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct NFTCollateral",
+                "name": "collateral",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "struct NFTListing",
+            "name": "listing",
+            "type": "tuple"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct NFTRecommendation",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "compliance",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct NFTListing",
+        "name": "listing",
+        "type": "tuple"
+      }
+    ],
+    "name": "getMatchingTknId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "recommendation",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "compliance",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct NFTListing",
+        "name": "listing",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "tknAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tknId",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "compliance",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct NFTListing",
+        "name": "listing",
+        "type": "tuple"
+      }
+    ],
+    "name": "register",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "listedOn",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "tknAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tknId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "compliance",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dailyFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum ReturnCondition",
+            "name": "returnCondition",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "expiry",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "currency",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct NFTCollateral",
+            "name": "collateral",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct NFTListing",
+        "name": "listing",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "recommendedCollection",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "recommendedId",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateMatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

@@ -109,6 +109,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.NFTFinder__factory>;
     getContractFactory(
+      name: "NFTLoans",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.NFTLoans__factory>;
+    getContractFactory(
       name: "NFTLoanVault",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.NFTLoanVault__factory>;
@@ -245,6 +249,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.NFTFinder>;
+    getContractAt(
+      name: "NFTLoans",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.NFTLoans>;
     getContractAt(
       name: "NFTLoanVault",
       address: string,
