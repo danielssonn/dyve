@@ -14,9 +14,7 @@ const {
   PRIVATE_KEY,
   ETHERSCAN_API_KEY,
   ALCHEMY_API_KEY_MAINNET,
-  ALCHEMY_GOERLI,
-  ALCHEMY_API_MUMBAI,
-  POLYGONSCAN_API_KEY
+  ALCHEMY_GOERLI
 } = process.env;
 
 const config: HardhatUserConfig = {
@@ -27,10 +25,6 @@ const config: HardhatUserConfig = {
     goerli: {
       url: ALCHEMY_GOERLI,
       accounts: [`0x${PRIVATE_KEY}`],
-    },
-    polygon_mumbai: {
-      url: ALCHEMY_API_MUMBAI,
-      accounts: [`0x${PRIVATE_KEY}`]
     },
     hardhat: {
       forking: {
@@ -48,10 +42,10 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: POLYGONSCAN_API_KEY,
+    apiKey: ETHERSCAN_API_KEY,
   },
   abiExporter: {
-    path: '../nft-gateway/data/abi',
+    path: '../nft_gateway/data/abi',
     runOnCompile: true,
     clear: true,
     flat: true,
