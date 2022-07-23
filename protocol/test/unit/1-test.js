@@ -3,59 +3,55 @@ const { ethers } = require("hardhat")
 
 
 
-describe("NFTMAtcher setup", function () {
+
+describe("NFTPool setup", function () {
 
     before(async function () {
-        Finder = await hre.ethers.getContractFactory("NFTFinder");
-        finder = await Finder.deploy()
+
+        NFTPool = await hre.ethers.getContractFactory("NFTPool");
+        nftPool = await NFTPool.deploy()
+
 
     })
 
-    it("Should update registry", async function () {
+
+    it("Should add another NFT token to pool and retrieve two", async function () {
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
+        await (nftPool.listNFT(1657483887, '0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e', 5912, 'pass', 3, 1, 1660163583, { amount: 3500000000, currency: 'ETH' }));
+        // retrieve it from pool based on index
+        await (nftPool.listNFT(1657483887, '0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e', 5913, 'pass', 3, 1, 1660163583, { amount: 3500000000, currency: 'ETH' }));
+        await (nftPool.listNFT(1657483887, '0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e', 5915, 'pass', 3, 1, 1660163583, { amount: 3500000000, currency: 'ETH' }));
 
-        await finder.register({ tknAddress: owner.address, tknId: 15, amount: 10, listingLength: 50 })
-        await finder.register({ tknAddress: owner.address, tknId: 16, amount: 10, listingLength: 50 })
+        expect(await nftPool.getAllCount()).to.equal(3);
 
-        await finder.register({ tknAddress: addr1.address, tknId: 17, amount: 10, listingLength: 50 })
-
-
-        await finder.updateMatch({ tknAddress: owner.address, tknId: 15, amount: 10, listingLength: 50 }, owner.address, 16)
-        await finder.updateMatch({ tknAddress: owner.address, tknId: 15, amount: 10, listingLength: 50 }, owner.address, 17)
-
-
-        expect(await finder.getMatchTknId({ tknAddress: owner.address, tknId: 15, amount: 10, listingLength: 50 })).to.equal(17)
 
     });
 
-    describe("NFTPool setup", function () {
+    describe("NFTLoanVault setup", function () {
 
         before(async function () {
 
-            NFTPool = await hre.ethers.getContractFactory("NFTPool");
-            nftPool = await NFTPool.deploy()
+            NFTLoanVaualt = await hre.ethers.getContractFactory("NFTLoanVault");
+            nftLoanVault = await NFTLoanVaualt.deploy()
 
-            NFTTkn = await hre.ethers.getContractFactory("SimpleToken");
-            nftTkn = await NFTTkn.deploy()
+
         })
 
-        it("Should add NFT token to pool and retrieve one", async function () {
-            [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-            await (nftTkn.setApprovalForAll(nftPool.address, true));
-            // address of NFT, ID, amount t                
-            await (nftPool.listNFT(nftTkn.address, 0, 1, 2));
-            // retrieve it from pool based on index
-            expect(await nftPool.listedNFTCount(owner.address)).to.equal(1);
-
-        });
 
         it("Should add another NFT token to pool and retrieve two", async function () {
             [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-            await (nftPool.listNFT(nftTkn.address, 1, 1, 2));
-            // retrieve it from pool based on index
-            expect(await nftPool.listedNFTCount(owner.address)).to.equal(2);
+
+            await (nftLoanVault.borrowedOn('0xFf961b90F914bB9c3d2B839DDdF6C1c926B712E6', { listedOn: 1642192383, tknAddress: '0x7f36182dee28c45de6072a34d29855bae76dbe2f', tknId: 1167, compliance: 'pass', dailyFee: 1, returnCondition: 1, expiry: 1649968383, collateral: { amount: 2250000000, currency: 'ETH' } }, 30, 1644870783, 1500000000, 850000000, 650000000, 66, '0x7f36182dee28c45de6072a34d29855bae76dbe2f', 1, 1644870783));
+            await (nftLoanVault.borrowedOn('0xFf961b90F914bB9c3d2B839DDdF6C1c926B712E6', { listedOn: 1642192383, tknAddress: '0x7f36182dee28c45de6072a34d29855bae76dbe2f', tknId: 1168, compliance: 'pass', dailyFee: 1, returnCondition: 1, expiry: 1649968383, collateral: { amount: 2250000000, currency: 'ETH' } }, 30, 1644870783, 1500000000, 850000000, 650000000, 66, '0x7f36182dee28c45de6072a34d29855bae76dbe2f', 1, 1644870783));
+
+
+            expect(await nftLoanVault.getAllCount()).to.equal(2);
+
 
         });
+
+
+
 
     });
 

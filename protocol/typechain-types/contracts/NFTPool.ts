@@ -70,7 +70,10 @@ export type NFTListingStructOutput = [
 
 export interface NFTPoolInterface extends utils.Interface {
   functions: {
+    "getAllCount()": FunctionFragment;
+    "getAllListedNFTs()": FunctionFragment;
     "getListedNFTs(address)": FunctionFragment;
+    "lenders(uint256)": FunctionFragment;
     "listNFT(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string))": FunctionFragment;
     "listedNFT(address,uint256)": FunctionFragment;
     "listedNFTCount(address)": FunctionFragment;
@@ -84,7 +87,10 @@ export interface NFTPoolInterface extends utils.Interface {
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "getAllCount"
+      | "getAllListedNFTs"
       | "getListedNFTs"
+      | "lenders"
       | "listNFT"
       | "listedNFT"
       | "listedNFTCount"
@@ -97,8 +103,20 @@ export interface NFTPoolInterface extends utils.Interface {
   ): FunctionFragment;
 
   encodeFunctionData(
+    functionFragment: "getAllCount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getAllListedNFTs",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "getListedNFTs",
     values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "lenders",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
     functionFragment: "listNFT",
@@ -156,9 +174,18 @@ export interface NFTPoolInterface extends utils.Interface {
   ): string;
 
   decodeFunctionResult(
+    functionFragment: "getAllCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllListedNFTs",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getListedNFTs",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "lenders", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "listNFT", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "listedNFT", data: BytesLike): Result;
   decodeFunctionResult(
@@ -233,10 +260,21 @@ export interface NFTPool extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    getAllCount(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getAllListedNFTs(
+      overrides?: CallOverrides
+    ): Promise<[NFTListingStructOutput[]]>;
+
     getListedNFTs(
       lender: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[NFTListingStructOutput[]]>;
+
+    lenders(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     listNFT(
       listedOn: PromiseOrValue<BigNumberish>,
@@ -316,10 +354,21 @@ export interface NFTPool extends BaseContract {
     ): Promise<ContractTransaction>;
   };
 
+  getAllCount(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getAllListedNFTs(
+    overrides?: CallOverrides
+  ): Promise<NFTListingStructOutput[]>;
+
   getListedNFTs(
     lender: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<NFTListingStructOutput[]>;
+
+  lenders(
+    arg0: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   listNFT(
     listedOn: PromiseOrValue<BigNumberish>,
@@ -399,10 +448,21 @@ export interface NFTPool extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    getAllCount(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getAllListedNFTs(
+      overrides?: CallOverrides
+    ): Promise<NFTListingStructOutput[]>;
+
     getListedNFTs(
       lender: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<NFTListingStructOutput[]>;
+
+    lenders(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     listNFT(
       listedOn: PromiseOrValue<BigNumberish>,
@@ -492,8 +552,17 @@ export interface NFTPool extends BaseContract {
   };
 
   estimateGas: {
+    getAllCount(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getAllListedNFTs(overrides?: CallOverrides): Promise<BigNumber>;
+
     getListedNFTs(
       lender: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    lenders(
+      arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -556,8 +625,17 @@ export interface NFTPool extends BaseContract {
   };
 
   populateTransaction: {
+    getAllCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getAllListedNFTs(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     getListedNFTs(
       lender: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    lenders(
+      arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
