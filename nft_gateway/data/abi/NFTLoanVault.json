@@ -83,6 +83,11 @@
         "internalType": "struct NFTListing",
         "name": "listing",
         "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "loanExpiry",
+        "type": "uint256"
       }
     ],
     "name": "borrow",
@@ -158,13 +163,72 @@
       },
       {
         "internalType": "uint256",
-        "name": "time",
+        "name": "loanExpiry",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "borroweOn",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price1",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price2",
+        "type": "uint256"
+      },
+      {
+        "internalType": "int256",
+        "name": "pl",
+        "type": "int256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "returnTknId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "returnedCollectionAdress",
+        "type": "address"
+      },
+      {
+        "internalType": "enum NFTLoanVault.LoanStatus",
+        "name": "loanStatus",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "returnedOn",
         "type": "uint256"
       }
     ],
-    "name": "borrowAt",
+    "name": "borrowedOn",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "borrowers",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -248,17 +312,42 @@
       },
       {
         "internalType": "uint256",
-        "name": "paid",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
         "name": "sold",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
+        "name": "paid",
+        "type": "uint256"
+      },
+      {
+        "internalType": "int256",
         "name": "PL",
+        "type": "int256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "loanExpiry",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "returnedTknId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "returnedCollectionAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "enum NFTLoanVault.LoanStatus",
+        "name": "status",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "returnedOn",
         "type": "uint256"
       }
     ],

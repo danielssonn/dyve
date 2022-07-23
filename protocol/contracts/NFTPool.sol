@@ -17,6 +17,15 @@ contract NFTPool is Ownable, ERC1155Receiver {
     // Each lender may have multiple NFTs listed
     mapping(address => uint256) public listedNFTCount;
 
+    mapping(address => bool) internal lenderExists;
+    address[] public lenders;
+
+    function addLender(address lender) internal {
+        require(!lenderExists[lender]);
+        lenders.push(lender);
+        lenderExists[lender] = true;
+    }
+
     /**
      * Listing function
      *
@@ -31,6 +40,8 @@ contract NFTPool is Ownable, ERC1155Receiver {
         uint256 expiry,
         NFTCollateral memory collateral
     ) public {
+        // 0. Update lenders
+        addLender(msg.sender);
         // 1. Update the count of listings for this lender
         listedNFTCount[msg.sender] = listedNFTCount[msg.sender] + 1;
         uint256 currentCount = listedNFTCount[msg.sender];
