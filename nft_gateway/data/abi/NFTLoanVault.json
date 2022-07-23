@@ -213,19 +213,132 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "getAllCount",
+    "outputs": [
       {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
     ],
-    "name": "borrowers",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllLoans",
     "outputs": [
       {
-        "internalType": "address",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "borrowedOn",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "listedOn",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "tknAddress",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "tknId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "compliance",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "dailyFee",
+                "type": "uint256"
+              },
+              {
+                "internalType": "enum ReturnCondition",
+                "name": "returnCondition",
+                "type": "uint8"
+              },
+              {
+                "internalType": "uint256",
+                "name": "expiry",
+                "type": "uint256"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "currency",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct NFTCollateral",
+                "name": "collateral",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "struct NFTListing",
+            "name": "listing",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sold",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "paid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "PL",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "loanExpiry",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "returnedTknId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "returnedCollectionAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "enum NFTLoanVault.LoanStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "returnedOn",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct NFTLoanVault.NFTLoan[]",
         "name": "",
-        "type": "address"
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",

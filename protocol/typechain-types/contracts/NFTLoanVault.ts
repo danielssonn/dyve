@@ -68,11 +68,51 @@ export type NFTListingStructOutput = [
   collateral: NFTCollateralStructOutput;
 };
 
+export declare namespace NFTLoanVault {
+  export type NFTLoanStruct = {
+    borrowedOn: PromiseOrValue<BigNumberish>;
+    listing: NFTListingStruct;
+    sold: PromiseOrValue<BigNumberish>;
+    paid: PromiseOrValue<BigNumberish>;
+    PL: PromiseOrValue<BigNumberish>;
+    loanExpiry: PromiseOrValue<BigNumberish>;
+    returnedTknId: PromiseOrValue<BigNumberish>;
+    returnedCollectionAddress: PromiseOrValue<string>;
+    status: PromiseOrValue<BigNumberish>;
+    returnedOn: PromiseOrValue<BigNumberish>;
+  };
+
+  export type NFTLoanStructOutput = [
+    BigNumber,
+    NFTListingStructOutput,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    string,
+    number,
+    BigNumber
+  ] & {
+    borrowedOn: BigNumber;
+    listing: NFTListingStructOutput;
+    sold: BigNumber;
+    paid: BigNumber;
+    PL: BigNumber;
+    loanExpiry: BigNumber;
+    returnedTknId: BigNumber;
+    returnedCollectionAddress: string;
+    status: number;
+    returnedOn: BigNumber;
+  };
+}
+
 export interface NFTLoanVaultInterface extends utils.Interface {
   functions: {
     "borrow(address,(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)),uint256)": FunctionFragment;
     "borrowedOn(address,(uint256,address,uint256,string,uint256,uint8,uint256,(uint256,string)),uint256,uint256,uint256,uint256,int256,uint256,address,uint8,uint256)": FunctionFragment;
-    "borrowers(uint256)": FunctionFragment;
+    "getAllCount()": FunctionFragment;
+    "getAllLoans()": FunctionFragment;
     "loanedNFT(address,uint256)": FunctionFragment;
     "loanedNFTCount(address)": FunctionFragment;
     "owner()": FunctionFragment;
@@ -84,7 +124,8 @@ export interface NFTLoanVaultInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "borrow"
       | "borrowedOn"
-      | "borrowers"
+      | "getAllCount"
+      | "getAllLoans"
       | "loanedNFT"
       | "loanedNFTCount"
       | "owner"
@@ -117,8 +158,12 @@ export interface NFTLoanVaultInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "borrowers",
-    values: [PromiseOrValue<BigNumberish>]
+    functionFragment: "getAllCount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getAllLoans",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "loanedNFT",
@@ -140,7 +185,14 @@ export interface NFTLoanVaultInterface extends utils.Interface {
 
   decodeFunctionResult(functionFragment: "borrow", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "borrowedOn", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "borrowers", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllLoans",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "loanedNFT", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "loanedNFTCount",
@@ -224,10 +276,11 @@ export interface NFTLoanVault extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    borrowers(
-      arg0: PromiseOrValue<BigNumberish>,
+    getAllCount(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    getAllLoans(
       overrides?: CallOverrides
-    ): Promise<[string]>;
+    ): Promise<[NFTLoanVault.NFTLoanStructOutput[]]>;
 
     loanedNFT(
       arg0: PromiseOrValue<string>,
@@ -298,10 +351,11 @@ export interface NFTLoanVault extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  borrowers(
-    arg0: PromiseOrValue<BigNumberish>,
+  getAllCount(overrides?: CallOverrides): Promise<BigNumber>;
+
+  getAllLoans(
     overrides?: CallOverrides
-  ): Promise<string>;
+  ): Promise<NFTLoanVault.NFTLoanStructOutput[]>;
 
   loanedNFT(
     arg0: PromiseOrValue<string>,
@@ -372,10 +426,11 @@ export interface NFTLoanVault extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    borrowers(
-      arg0: PromiseOrValue<BigNumberish>,
+    getAllCount(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getAllLoans(
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<NFTLoanVault.NFTLoanStructOutput[]>;
 
     loanedNFT(
       arg0: PromiseOrValue<string>,
@@ -456,10 +511,9 @@ export interface NFTLoanVault extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    borrowers(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    getAllCount(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getAllLoans(overrides?: CallOverrides): Promise<BigNumber>;
 
     loanedNFT(
       arg0: PromiseOrValue<string>,
@@ -507,10 +561,9 @@ export interface NFTLoanVault extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    borrowers(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    getAllCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    getAllLoans(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     loanedNFT(
       arg0: PromiseOrValue<string>,

@@ -27,21 +27,26 @@ contract NFTLoanVault is Ownable {
         INITIAL,
         RETURN_W_DYVE,
         RETURN_SELF,
-        FORTEIT_COLLATERAL
+        FORTEIT_COLLATERAL,
+        OTHER
     }
 
     //borrower's loans
     mapping(address => mapping(uint256 => NFTLoan)) public loanedNFT;
-    mapping(address => bool) internal borrowerExists;
-    address[] public borrowers;
+    uint256 allLoans;
 
     // Each borrower may have multiple NFTs borrowed
     mapping(address => uint256) public loanedNFTCount;
 
+    // Manage borrowers
+    mapping(address => bool) internal borrowerExists;
+    address[] borrowers;
+
     function addBorrower(address borrower) internal {
-        require(!borrowerExists[borrower]);
-        borrowers.push(borrower);
-        borrowerExists[borrower] = true;
+        if (!borrowerExists[borrower]) {
+            borrowers.push(borrower);
+            borrowerExists[borrower] = true;
+        }
     }
 
     function borrow(
@@ -49,6 +54,8 @@ contract NFTLoanVault is Ownable {
         NFTListing memory listing,
         uint256 loanExpiry
     ) public {
+        addBorrower(msg.sender);
+        allLoans = allLoans + 1;
         loanedNFTCount[borrower] = loanedNFTCount[borrower] + 1;
         uint256 currentCount = loanedNFTCount[borrower];
         loanedNFT[borrower][currentCount] = NFTLoan(
@@ -81,7 +88,8 @@ contract NFTLoanVault is Ownable {
         LoanStatus loanStatus,
         uint256 returnedOn
     ) public {
-        loanedNFTCount[borrower] = loanedNFTCount[borrower] + 1;
+        addBorrower(msg.sender);
+        allLoans = allLoans + 1;
         uint256 currentCount = loanedNFTCount[borrower];
         loanedNFT[borrower][currentCount] = NFTLoan(
             borroweOn,
@@ -95,5 +103,27 @@ contract NFTLoanVault is Ownable {
             loanStatus,
             returnedOn
         );
+        loanedNFTCount[borrower] = loanedNFTCount[borrower] + 1;
+    }
+
+    /**
+     *   Retrieve all Loans
+     */
+    function getAllLoans() public view returns (NFTLoan[] memory) {
+        NFTLoan[] memory ret = new NFTLoan[](allLoans);
+
+        for (uint256 j = 0; j < borrowers.length; j++) {
+            for (uint256 i = 0; i < loanedNFTCount[borrowers[j]]; i++) {
+                ret[i] = loanedNFT[borrowers[j]][i];
+            }
+        }
+        return ret;
+    }
+
+    /**
+     *   Testing helper
+     */
+    function getAllCount() public view returns (uint256) {
+        return getAllLoans().length;
     }
 }
