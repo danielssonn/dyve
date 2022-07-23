@@ -1,15 +1,15 @@
 ## Scaffolding the client with Vite and Tailwind
 
 cd /client
-npm install
+npm install,
 npm run dev
 
 ## Scaffolding the protocol with Hardhat
 
-cd /protocol
+cd /protocol,
 npm install
 
 ## Scaffolding the oracles
 
-cd /oracles
+cd /oracles,
 npm install

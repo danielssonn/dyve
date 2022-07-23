@@ -26,13 +26,13 @@ const Landing = () => {
 
   const { connectWallet, setUserIdentity } = useContext(TransactionContext);
 
-  // cnnect wallet
+  // connect wallet
   const connect = async () => {
     const connect = await connectWallet();
   };
 
   return (
-    <div className="bg-dashboard bg-contain bg-repeat-x w-full h-100v flex flex-col justify-center items-center">
+    <div className="animate-fade bg-white bg-dashboard bg-contain bg-repeat-x w-full h-90v flex flex-col justify-center items-center">
       <h1 className="font-semibold text-2xl text-stone-500 uppercase">Welcome to</h1>
 
       {/* Dapp name */}
@@ -56,8 +56,10 @@ const Landing = () => {
             </button>
           </div>
         }
+      </div>
 
-        {/* enter user name */}
+      <div className="rounded-lg p-4 text-transparent xl:text-6xl text-4xl font-extrabold bg-clip-text bg-gradient-to-br from-[#3926AD] to-[#C367D6]">
+        <h1>Dyve</h1>
       </div>
     </div>
   );

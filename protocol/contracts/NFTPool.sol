@@ -16,19 +16,6 @@ contract NFTPool is Ownable, ERC1155Receiver {
     mapping(address => mapping(uint256 => NFTListing)) public listedNFT;
     // Each lender may have multiple NFTs listed
     mapping(address => uint256) public listedNFTCount;
-    // count of all listings in the protocol
-    uint256 allListedNFTs;
-
-    // Manage lenders
-    mapping(address => bool) internal lenderExists;
-    address[] public lenders;
-
-    function addLender(address lender) internal {
-        if (!lenderExists[lender]) {
-            lenders.push(lender);
-            lenderExists[lender] = true;
-        }
-    }
 
     /**
      * Listing function
@@ -44,10 +31,8 @@ contract NFTPool is Ownable, ERC1155Receiver {
         uint256 expiry,
         NFTCollateral memory collateral
     ) public {
-        // 0. Update lenders
-        addLender(msg.sender);
         // 1. Update the count of listings for this lender
-        allListedNFTs = allListedNFTs + 1;
+        listedNFTCount[msg.sender] = listedNFTCount[msg.sender] + 1;
         uint256 currentCount = listedNFTCount[msg.sender];
         // 2. List NFT in the Pool
         listedNFT[msg.sender][currentCount] = NFTListing(
@@ -60,9 +45,8 @@ contract NFTPool is Ownable, ERC1155Receiver {
             expiry,
             collateral
         );
-        listedNFTCount[msg.sender] = listedNFTCount[msg.sender] + 1;
 
-        // 3. Transfer the NFT to this contract - live only!
+        // 3. Transfer the NFT to this contract
         // IERC1155(tknAddress).safeTransferFrom(
         //     msg.sender,
         //     address(this),
@@ -73,7 +57,7 @@ contract NFTPool is Ownable, ERC1155Receiver {
     }
 
     /**
-    Retrieve all listings for a lender
+    Retrieve all listings
      */
     function getListedNFTs(address lender)
         public
@@ -85,27 +69,6 @@ contract NFTPool is Ownable, ERC1155Receiver {
             ret[i] = listedNFT[lender][i];
         }
         return ret;
-    }
-
-    /**
-    Retrieve all listings
-     */
-    function getAllListedNFTs() public view returns (NFTListing[] memory) {
-        NFTListing[] memory ret = new NFTListing[](allListedNFTs);
-
-        for (uint256 j = 0; j < lenders.length; j++) {
-            for (uint256 i = 0; i < listedNFTCount[lenders[j]]; i++) {
-                ret[i] = listedNFT[lenders[j]][i];
-            }
-        }
-        return ret;
-    }
-
-    /**
-    Testing helper
-     */
-    function getAllCount() public view returns (uint256) {
-        return getAllListedNFTs().length;
     }
 
     /**
