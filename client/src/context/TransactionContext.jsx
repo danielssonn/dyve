@@ -3,6 +3,9 @@ import { ethers } from "ethers";
 
 export const TransactionContext = React.createContext();
 
+// import contractABI, contractAddress
+import { borrowerContractAddress, lenderContractAddress } from "../utils/constants";} from '../utils/constants'}
+
 // ethereum object from window, initiate provider and signer
 const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
