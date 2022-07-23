@@ -5,10 +5,10 @@ import {myNfts as nfts} from '../data';
 
 const MyNfts = () => {
     return (
-        <div className="bg-dashboard">
+        <div className="">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
-                    <h1 className="mt-4 text-xl text-gray-700">My NFT's</h1>
+                    <h1 className="text-2xl font-semibold text-gray-700">My NFT's</h1>
                 </div>
                 <div className="flex pb-10 space-x-4">
                     <p className='px-4 py-1 bg-white rounded-md'>Rarity</p>
@@ -33,16 +33,16 @@ const MyNfts = () => {
                         <div className='flex w-full
 space-x-3'>
                             <div className='w-1/3'>
-                                <p>Collateral</p>
-                                <h3 className="mt-4 text-sm text-gray-700">{nft.collateral}</h3>
+                                <p>Floor Price</p>
+                                <h3 className="mt-4 text-sm text-gray-700">{nft.floorPrice}</h3>
                             </div>
                             <div className='text-center w-1/3'>
-                                <p>Max Offer</p>
-                                <h3 className="mt-4 text-sm text-gray-700">{nft.maxOffer}</h3>
+                                <p>NFT Best Offer</p>
+                                <h3 className="mt-4 text-sm text-gray-700">{nft.bestOffer}</h3>
                             </div>
                             <div className='text-right w-1/3'>
-                                <p>Prem</p>
-                                <h3 className="mt-4 text-sm text-gray-700">{nft.premium}</h3>
+                                <p>Rarity</p>
+                                <h3 className="mt-4 text-sm text-gray-700">{nft.rarity}</h3>
                             </div>
                         </div>
                     </Link>

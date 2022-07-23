@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+import {myNfts as nftData} from '../data'
+
+import CovalentLogo from '../img/covalent.svg'
+import NftPortLogo from '../img/nftport.svg'
+
 const CreateListingModal = nftData => {
   const [showModal, setShowModal] = useState(false)
   return (
@@ -29,7 +34,7 @@ const CreateListingModal = nftData => {
                   </button>
                 </div>
                 {/* Contents of blue bubble in Modal */}
-                <div className="relative p-3 flex-auto text-center space-y-2 bg-sky-100 m-5 rounded-2xl">
+                <div className="relative p-3 flex-auto text-center space-y-2 bg-[rgba(241,244,250,1)] m-5 rounded-2xl">
                   <div className="flex mx-auto px-4 py-4 max-w-7xl justify-between">
 
                       {/* NFT Card */}
@@ -87,8 +92,10 @@ const CreateListingModal = nftData => {
                 </div>
                 {/* End contents of blue bubble in Modal */}
                 <div className="flex justify-between mb-6 px-5">
+                  <img className="pr-6" src={CovalentLogo} alt="Covalent" />
+                  <img className="pr-6" src={NftPortLogo} alt="NFTPort" />
                   <div className="text-right pr-6">
-                    <p className="text-xs">If a required NFT is not replaced before expiry, you can claim the collateral amound indicated above. Using NFTPort, Dyve ensures no stolen NFTs are lent or returned.</p>
+                    <p className="text-xs">Dyve ensures no stolen NFTs are lent or returned on the platform. If the required NFT is not replaced before expiry, you can claim the collateral amount indicated above.</p>
                   </div>
                   <div className="w-1/3">
                     <button

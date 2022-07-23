@@ -5,10 +5,10 @@ import {nftCollections} from '../data';
 
 const Collections = () => {
     return (
-        <div className="bg-dashboard">
+        <div className="">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
-                    <h1 className="mt-4 text-xl text-gray-700">Collections</h1>
+                    <h1 className="text-2xl font-semibold text-gray-700">Collection Rankings</h1>
                 </div>
                 <div className="grid grid-cols-1 gap-y-10">
                 {nftCollections.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
@@ -31,7 +31,7 @@ const Collections = () => {
                                     <h3 className="mt-4 text-sm text-gray-700">{nft.listed}</h3>
                                 </div>
                                 <div className='text-center w-1/5'>
-                                    <p>Volume</p>
+                                    <p>24h</p>
                                     <h3 className="mt-4 text-sm text-gray-700">{nft.volume24hr}</h3>
                                 </div>
                                 <div className='text-center w-1/5'>

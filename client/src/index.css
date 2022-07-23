@@ -11,7 +11,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #E6F4FF;
+  background-color: rgba(241,244,250,1);
 }
 
 .icon{

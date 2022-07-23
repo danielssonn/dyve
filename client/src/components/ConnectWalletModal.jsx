@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import MetamaskLogo from '../img/metamask.svg'
 import WalletConnectLogo from '../img/wallet-connect.svg'
+import DyveLogo from '../img/dyve-logo.svg'
 
 const ConnectWalletModal = () => {
   const [showModal, setShowModal] = useState(false)
@@ -9,7 +10,7 @@ const ConnectWalletModal = () => {
     <>
       <button
             onClick={() => setShowModal(true)}
-            className="py-2 px-6 font-semibold text-white border bg-[#58DC4D] rounded-lg flex items-center  hover:opacity-75"
+            className="py-2 px-3 font-semibold text-sm text-white bg-[#58DC4D] rounded-lg flex items-center hover:opacity-75"
             >
         Connect
       </button>
@@ -20,7 +21,7 @@ const ConnectWalletModal = () => {
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5">
-                  <h3 className="text-3xl font=semibold">dyve</h3>
+                  <img className="px-1 translate-y-3" src={DyveLogo} alt="Dyve" />
                   <button
                     className="bg-transparent border-0 text-black float-right"
                     onClick={() => setShowModal(false)}
@@ -30,15 +31,15 @@ const ConnectWalletModal = () => {
                     </span>
                   </button>
                 </div>
-                <div className="relative p-3 flex-auto text-center space-y-2 bg-sky-100 m-5 rounded-xl">
+                <div className="relative p-3 flex-auto text-center space-y-3 bg-[rgba(241,244,250,1)] m-5 rounded-xl">
                   <h2>Connect with</h2>
                   <div className="flex justify-between rounded-lg bg-white p-2 cursor-pointer hover:opacity-75">
                       <img className="px-4" src={MetamaskLogo} alt="MetaMask" />
-                    <p className="p-4">Metamask</p>
+                    <p className="p-4 font-semibold">Metamask</p>
                   </div>
                   <div className="flex justify-between rounded-lg bg-white p-2 cursor-pointer hover:opacity-75">
                       <img className="px-2" src={WalletConnectLogo} alt="WalletConnect" />
-                    <p className="p-4">WalletConnect</p>
+                    <p className="p-4 font-semibold">WalletConnect</p>
                   </div>
 
                 </div>
