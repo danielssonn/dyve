@@ -23,7 +23,7 @@ const TopBar = (prop) => {
         <div className="flex justify-end items-center">
 
           <div className="p-4 pr-0">
-          <Link to="/mynfts"><button
+            <Link to="/mynfts"><button
               className="py-2 px-3 font-semibold text-sm text-[#0778E0] bg-[rgba(241,244,250,1)] rounded-lg flex items-center hover:opacity-75"
             >
               My NFT's

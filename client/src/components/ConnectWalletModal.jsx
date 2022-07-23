@@ -1,11 +1,21 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 import MetamaskLogo from '../img/metamask.svg'
 import WalletConnectLogo from '../img/wallet-connect.svg'
 import DyveLogo from '../img/dyve-logo.svg'
 
+import { TransactionContext } from "../context/TransactionContext";
+
 const ConnectWalletModal = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+
+  const { connectWallet, setUserIdentity } = useContext(TransactionContext);
+
+  // connect wallet
+  const connect = async () => {
+    const connect = await connectWallet();
+  };
+
   return (
     <>
       <button
@@ -33,7 +43,7 @@ const ConnectWalletModal = () => {
                 </div>
                 <div className="relative p-3 flex-auto text-center space-y-3 bg-[rgba(241,244,250,1)] m-5 rounded-xl">
                   <h2>Connect with</h2>
-                  <div className="flex justify-between rounded-lg bg-white p-2 cursor-pointer hover:opacity-75">
+                  <div onClick={connect} className="flex justify-between rounded-lg bg-white p-2 cursor-pointer hover:opacity-75">
                       <img className="px-4" src={MetamaskLogo} alt="MetaMask" />
                     <p className="p-4 font-semibold">Metamask</p>
                   </div>

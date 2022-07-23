@@ -41,8 +41,8 @@ const Dashboard = () => {
                                 Ξ{nft.net}/day
                                 <img className="object-scale-down w-4 pl-1" src={BoltIcon} />
                             </div>
-                            <div className="relative bottom-0">
-                                <div className="absolute -bottom-4 items-center px-4 py-1 bg-white rounded-xl">
+                            <div className="relative block bottom-0 width-full flex position-center">
+                                <div className="absolute -bottom-5  left-1/2 transform -translate-x-1/2 items-center text-center px-5 py-2 bg-[rgba(241,244,250,1)] rounded-full font-semibold group-hover:bg-[#012343] group-hover:text-white">
                                     Modify/Cancel
                                 </div>
                             </div>

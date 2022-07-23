@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { nfts as nftData } from '../data'
+import { nftCollections } from '../data';
 
 const Gallery = () => {
   const params = useParams()
