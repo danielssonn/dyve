@@ -55,8 +55,8 @@ const DashboardLenderClosed = () => {
                         </div>
                         <div className='flex w-full space-x-3 pt-2 px-1'>
                             <div className='w-1/3'>
-                                <p className="text-[#99B2C6] font-semibold text-xs">Collateral</p>
-                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.collateral}</h3>
+                                <p className="text-[#99B2C6] font-semibold text-xs">Floor Price</p>
+                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.floorPrice}</h3>
                             </div>
                             <div className='text-center w-1/3'>
                                 <p className="text-[#99B2C6] font-semibold text-xs">Best Offer</p>

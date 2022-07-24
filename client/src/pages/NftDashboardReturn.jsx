@@ -59,7 +59,7 @@ const NftDashboardReturn = () => {
                     </div>
                     <p className="text-left text-sm mt-1">Let Dyve buy the required NFT and close the position for you!</p>
                     <p className="text-left text-xs mt-1">Best close price Dyve can find</p>
-                    <h3 className="text-left text-3xl font-semibold">Ξ12.53</h3>
+                    <h3 className="text-left text-3xl font-semibold">Ξ6</h3>
                     <div className="">
                         <div className="width-full flex pt-5">
                         <input id="radio-dyve-out"

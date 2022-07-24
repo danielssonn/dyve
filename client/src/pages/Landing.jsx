@@ -45,7 +45,7 @@ const Landing = () => {
       <div className="w-full justify-center pb-20 mt-32 flex flex-col justify-center items-center heroBg">
           <div className="max-w-5xl text-left grid grid-cols-2 gap-8 items-center">
             <div className="pr-6 justify-left space-y-10">
-              <h1 className="text-4xl font-bold mx-auto pt-20">Rent, Lend,<br /> & Short NFTs</h1>
+              <h1 className="text-4xl font-bold mx-auto pt-12">Rent, Lend,<br /> & Short NFTs</h1>
               <h2 className="text-2xl mx-auto font-semibold">Lend your NFTs for a fee, and rent or short NFTs in a safe and secure way</h2>
               <div className="w-full place-content-center">
                 <Link to="/">

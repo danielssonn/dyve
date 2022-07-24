@@ -32,7 +32,7 @@ const ModalDyveSuccess = () => {
                   </button>
                 </div>
                 <div className="relative p-3 flex-auto text-center space-y-8 m-5 mx-20 rounded-lg">
-                  <p>Your NFT position has been closed.</p>
+                  <p>Your NFT borrow position has been closed.<br /> Your collateral has been returned to your wallet.</p>
                   
                   <Link className="flex justify-center" to="/dashboard/borrower/closed"><button
                     className="py-2 px-6 font-semibold text-lg text-[#0778E0] bg-[rgba(241,244,250,1)] rounded-lg flex items-center hover:opacity-75"

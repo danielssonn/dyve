@@ -109,22 +109,22 @@ const Nft = () => {
                     </div>
                     <div className="width-full flex justify-end justify-between mt-4">
                         <h3 className="col-start-1 col-span-2 text-lg font-semibold">Return by</h3>
-                        <h3 className="col-start-5 col-span-2 text-right font-semibold text-[#0778E0]">2022/07/31</h3>
+                        <h3 className="col-start-5 col-span-2 text-right font-semibold text-[#0778E0]">2022/07/07</h3>
                     </div>
                     <div className="width-full flex justify-end justify-between my-4">
                         <h3 className="col-start-1 col-span-2 text-lg font-semibold">Total Premium</h3>
-                        <h3 className="col-start-5 col-span-2 font-semibold text-[#0778E0]">Ξ1.3</h3>
+                        <h3 className="col-start-5 col-span-2 font-semibold text-[#0778E0]">Ξ0.3</h3>
                     </div>
                     <div className="width-full flex justify-end justify-between my-3 items-center bg-[#def8db] rounded-full p-4">
                         <img className="object-scale-down w-7" src={BoltIcon} />
                         <div className="py-2 px-4 font-semibold text-[#58dc4d]">
                             Net of Sale
                         </div>
-                        <h3 className="col-start-5 col-span-2 font-semibold">Ξ0.75</h3>
+                        <h3 className="col-start-5 col-span-2 font-semibold">Ξ7.7</h3>
                     </div>
                     <p className="text-right text-xs pt-5">Total Amount to pay (including collateral)</p>
-                    <h3 className="text-right text-4xl font-semibold py-1">Ξ13.25</h3>
-                    <h3 className="text-right text-xl">$15,427.83</h3>
+                    <h3 className="text-right text-4xl font-semibold py-1">Ξ12.3</h3>
+                    <h3 className="text-right text-xl">$19556.26 USD</h3>
                 </div>
 
             </div>
