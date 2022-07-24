@@ -1,1 +1,0 @@
-https://p6dhh2nd0b.execute-api.us-east-1.amazonaws.com/test/chainlinkAMLAdapter
