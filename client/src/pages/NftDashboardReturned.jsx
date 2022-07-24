@@ -6,7 +6,7 @@ import {nftCollections} from '../data'
 import {openListings} from '../data';
 import BoltIcon from '../img/bolt.svg'
 
-const NftDashboard = () => {
+const NftDashboardReturned = () => {
     const params = useParams()
     const thisNFT = openListings.find(nft => nft.id === parseInt(params.id))
     const thisCollection = nftCollections.find(collection => collection.collection === params.collection)
@@ -55,7 +55,7 @@ const NftDashboard = () => {
             {/* Contract Title */}
             <div className="flex justify-end max-w-2xl m-auto pb-6 px-4 sm:px-6 lg:max-w-7xl lg:px-8 items-center">
                 <div className="text-left pr-6 w-full space-y-2">
-                    <h2 className="font-semibold text-3xl">Open</h2>
+                    <h2 className="font-semibold text-3xl">Returned</h2>
                 </div>
             </div>
             {/* Main Body */}
@@ -120,4 +120,4 @@ const NftDashboard = () => {
     )
 }
 
-export default NftDashboard
+export default NftDashboardReturned

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
+
 import {nfts as nftData} from '../data'
 import {nftCollections} from '../data'
 import BoltIcon from '../img/bolt.svg'
+import { ModalShortSuccess } from '../components'
 
 const Nft = () => {
     const params = useParams()
@@ -54,8 +56,8 @@ const Nft = () => {
             {/* Contract Title */}
             <div className="flex justify-end max-w-2xl m-auto pb-6 px-4 sm:px-6 lg:max-w-7xl lg:px-8 items-center">
                 <div className="text-left pr-6 w-full space-y-2">
-                    <h2 className="font-semibold text-xl">Short</h2>
-                    <p className="text-xs">The lender has decided that you can borrow and short this NFT.</p>
+                    <h2 className="font-semibold  text-3xl">Short</h2>
+                    <p className="text-sm">The lender has decided that you can borrow and short this NFT.</p>
                 </div>
             </div>
             {/* Main Body */}
@@ -63,7 +65,7 @@ const Nft = () => {
                 {/* NFT Card */}
                 <div className="max-w-2/3 group">
                     <div className="flex bg-white p-3 rounded-xl">
-                        <div className="relative w-2/3 aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
+                        <div className="relative aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
                             <img
                                 src={thisNFT.imageSrc}
                                 alt={thisNFT.imageAlt}
@@ -79,8 +81,8 @@ const Nft = () => {
                                 <h3 className="text-gray-700 font-semibold">Ξ{thisNFT.collateral}</h3>
                             </div>
                             <div className='w-full flex justify-between'>
-                                <p>Max Offer</p>
-                                <h3 className="text-gray-700 font-semibold">Ξ{thisNFT.maxOffer}</h3>
+                                <p>Best Offer</p>
+                                <h3 className="text-gray-700 font-semibold">Ξ{thisNFT.bestOffer}</h3>
                             </div>
                             <div className='w-full flex justify-between'>
                                 <p>Premium/day</p>
@@ -91,36 +93,35 @@ const Nft = () => {
                                 <h3 className="text-gray-700 font-semibold">Any NFT</h3>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 {/* Terms and Settings */}
                 <div className="justify-end column-1 w-2/3 relative right items-right pl-20">
-                    <h3 className="text-xl">Duration</h3>
-                    <p className="text-left text-xs">Amount of days before you return any NFT (Same collection)</p>
-                    <div className="width-full bg-white rounded-lg mt-2 p-4 font-semibold text-slate-300">Amount of days</div>
-                    <div className="width-full text-sm flex justify-between py-2 pb-3">
+                    <h3 className="text-left text-lg font-semibold">Duration</h3>
+                    <p className="text-left text-xs mt-1">Amount of days before you return an NFT</p>
+                    <input class="mt-2 rounded-xl w-full py-2 px-3 text-gray-700 leading-9 focus:outline-none focus:shadow-outline" id="duration-position" type="number" step="1" max='30' min='1' placeholder="Amount of days" />
+                    <div className="width-full text-sm flex justify-between py-1 pb-3">
                         <p>Max Duration</p>
-                        <p>00 days</p>
+                        <p>30 days</p>
                     </div>
                     <div className="width-full flex justify-end justify-between mt-4">
-                        <h3 className="col-start-1 col-span-2">Return by</h3>
-                        <h3 className="col-start-5 col-span-2 text-right font-semibold text-[#0778E0]">0000/00/00 00:00</h3>
+                        <h3 className="col-start-1 col-span-2 text-lg font-semibold">Return by</h3>
+                        <h3 className="col-start-5 col-span-2 text-right font-semibold text-[#0778E0]">2022/08/15 11:37</h3>
                     </div>
-                    <div className="width-full flex justify-end justify-between mt-4">
-                        <h3 className="col-start-1 col-span-2">Total Premium</h3>
-                        <h3 className="col-start-5 col-span-2 font-semibold text-[#0778E0]">Ξ00</h3>
+                    <div className="width-full flex justify-end justify-between my-4">
+                        <h3 className="col-start-1 col-span-2 text-lg font-semibold">Total Premium</h3>
+                        <h3 className="col-start-5 col-span-2 font-semibold text-[#0778E0]">Ξ1.3</h3>
                     </div>
-                    <div className="width-full flex justify-end justify-between h-10 mt-4 items-baseline">
-                        <img className="object-scale-down w-7  translate-y-3" src={BoltIcon} />
-                        <div className="py-2 px-4 bg-[#58DC4D] rounded-full">
+                    <div className="width-full flex justify-end justify-between my-3 items-center bg-[#def8db] rounded-full p-4">
+                        <img className="object-scale-down w-7" src={BoltIcon} />
+                        <div className="py-2 px-4 font-semibold text-[#58dc4d]">
                             Net of Sale
                         </div>
-                        <h3 className="col-start-5 col-span-2 font-semibold text-[#0778E0]">Ξ0</h3>
+                        <h3 className="col-start-5 col-span-2 font-semibold">Ξ0.75</h3>
                     </div>
-                    <p className="text-right text-sm pt-5">Total Amount to pay (including collateral)</p>
-                    <h3 className="text-right text-4xl font-semibold py-2">Ξ00.000</h3>
-                    <h3 className="text-right text-xl">$0,000.00</h3>
+                    <p className="text-right text-xs pt-5">Total Amount to pay (including collateral)</p>
+                    <h3 className="text-right text-4xl font-semibold py-1">Ξ13.25</h3>
+                    <h3 className="text-right text-xl">$15,427.83</h3>
                 </div>
 
             </div>
@@ -130,12 +131,7 @@ const Nft = () => {
                     <p className="text-xs">Post collateral and pay premium to execute position. Dyve sells the NFT automatically and you will receive net of sale amount when you close the position on your dashboard.</p>
                 </div>
                 <div className="">
-                    <button
-                            onClick={() => setShowModal(true)}
-                            className="py-2 px-6 font-semibold text-white bg-white rounded-lg hover:opacity-75 text-[#0778E0]"
-                            >
-                        Execute Position
-                    </button>
+                    <ModalShortSuccess />
                 </div>
             </div>
         </div>

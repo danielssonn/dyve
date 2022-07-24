@@ -6,21 +6,21 @@ import { NftCard } from '../components';
 import BoltIcon from '../img/bolt.svg'
 
 {/* import dummy data */}
-import {openListings} from '../data';
+import {closedListings} from '../data';
 
-const Dashboard = () => {
+const DashboardLenderClosed = () => {
     return (
         <div className="mb-40">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <div className="py-10 flex space-x-10">
                     <h1 className="font-semibold text-gray-700 text-3xl">Positions and Listings</h1>
                     <div className="flex">
-                        <Link to={`/dashboard/lender/open`}><div className="font-semibold rounded-l-xl p-2 px-3 cursor-pointer bg-[#012343] text-white hover:bg-[#012343] hover:text-white">Lending</div></Link>
-                        <Link to={`/dashboard/borrower/open`}><div className="font-semibold rounded-r-xl p-2 px-3 cursor-pointer bg-white text-[#99B2C6] hover:bg-[#012343] hover:text-white">Borrowing</div></Link>
+                        <Link to={`/dashboard/lender/closed`}><div className="font-semibold rounded-l-xl p-2 px-3 cursor-pointer bg-[#012343] text-white hover:bg-[#012343] hover:text-white">Lending</div></Link>
+                        <Link to={`/dashboard/borrower/closed`}><div className="font-semibold rounded-r-xl p-2 px-3 cursor-pointer bg-white text-[#99B2C6] hover:bg-[#012343] hover:text-white">Borrowing</div></Link>
                     </div>
                     <div className="flex">
-                        <Link to={`/dashboard/lender/open`}><div className="font-semibold rounded-l-xl p-2 px-3 cursor-pointer bg-[#012343] text-white hover:bg-[#012343] hover:text-white">Open</div></Link>
-                        <Link to={`/dashboard/lender/closed`}><div className="font-semibold rounded-r-xl p-2 px-3 cursor-pointer bg-white text-[#99B2C6] hover:bg-[#012343] hover:text-white">Closed</div></Link>
+                        <Link to={`/dashboard/lender/open`}><div className="font-semibold rounded-l-xl p-2 px-3 cursor-pointer bg-white text-[#99B2C6] hover:bg-[#012343] hover:text-white">Open</div></Link>
+                        <Link to={`/dashboard/lender/closed`}><div className="font-semibold rounded-r-xl p-2 px-3 cursor-pointer bg-[#012343] text-white hover:bg-[#012343] hover:text-white">Closed</div></Link>
                     </div>
                 </div>
                 <div className="flex space-x-4 pb-10">
@@ -33,7 +33,7 @@ const Dashboard = () => {
                     <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">A-Z</div>
                 </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {openListings.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
+                    {closedListings.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
                     <Link to={`/dashboard/${nft.collection}/${nft.id}`}>
                         <div className="relative w-full mb-3 aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg xl:aspect-w-7 xl:aspect-h-8">
                             <img
@@ -47,7 +47,7 @@ const Dashboard = () => {
                             </div>
                             <div className="relative block bottom-0 width-full flex position-center">
                                 <div className="absolute -bottom-5  left-1/2 transform -translate-x-1/2 items-center text-center px-4 py-2 bg-[rgba(241,244,250,1)] rounded-full font-semibold group-hover:bg-[#012343] group-hover:text-white">
-                                    {nft.expiry}
+                                    {nft.status}
                                 </div>
                             </div>
                         </div><div className='w-full flex justify-between px-1'>
@@ -77,4 +77,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default DashboardLenderClosed

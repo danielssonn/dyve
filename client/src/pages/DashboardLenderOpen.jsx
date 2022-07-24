@@ -8,7 +8,7 @@ import BoltIcon from '../img/bolt.svg'
 {/* import dummy data */}
 import {openListings} from '../data';
 
-const Dashboard = () => {
+const DashboardLenderOpen = () => {
     return (
         <div className="mb-40">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -34,7 +34,7 @@ const Dashboard = () => {
                 </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                     {openListings.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
-                    <Link to={`/dashboard/${nft.collection}/${nft.id}`}>
+                    <Link to={`/dashboard/${nft.collection}/${nft.id}/`}>
                         <div className="relative w-full mb-3 aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg xl:aspect-w-7 xl:aspect-h-8">
                             <img
                                 src={nft.imageSrc}
@@ -77,4 +77,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default DashboardLenderOpen

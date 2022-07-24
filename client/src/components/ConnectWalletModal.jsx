@@ -45,11 +45,11 @@ const ConnectWalletModal = () => {
                   <h2>Connect with</h2>
                   <div onClick={connect} className="flex justify-between rounded-lg bg-white p-2 cursor-pointer hover:opacity-75">
                       <img className="px-4" src={MetamaskLogo} alt="MetaMask" />
-                    <p className="p-4 font-semibold">Metamask</p>
+                    <p className="p-4 font-semibold">MetaMask</p>
                   </div>
                   <div className="flex justify-between rounded-lg bg-white p-2 cursor-pointer hover:opacity-75">
                       <img className="px-2" src={WalletConnectLogo} alt="WalletConnect" />
-                    <p className="p-4 font-semibold">WalletConnect</p>
+                    <p className="p-4 font-semibold">Wallet Connect</p>
                   </div>
 
                 </div>

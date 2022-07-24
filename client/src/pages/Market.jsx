@@ -9,13 +9,12 @@ const Market = () => {
         <div className="">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
-                    <h1 className="text-2xl font-semibold text-gray-700">Market</h1>
+                    <h1 className="font-semibold text-gray-700 text-3xl">Market</h1>
                 </div>
-                <div className="flex pb-10 space-x-4">
-                    <p className='px-4 py-1 bg-white rounded-md'>Rarity</p>
-                    <p className='px-4 py-1 bg-white rounded-md'>Max Offer</p>
-                    <p className='px-4 py-1 bg-white rounded-md'>Sort</p>
-                    <p className='px-4 py-1 bg-white rounded-md'>Alphabetical</p>
+                <div className="flex space-x-4 pb-10">
+                    <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">#Rarity</div>
+                    <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">Best Offer</div>
+                    <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">A-Z</div>
                 </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                     {nfts.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
@@ -44,8 +43,8 @@ const Market = () => {
                                 <h3 className="mt-1 text-gray-700 font-semibold">{nft.maxOffer}</h3>
                             </div>
                             <div className='text-right w-1/3'>
-                                <p className="text-[#99B2C6] font-semibold text-xs">Premium</p>
-                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.premium}</h3>
+                                <p className="text-[#99B2C6] font-semibold text-xs">Return</p>
+                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.return}</h3>
                             </div>
                         </div>
                     </Link>
