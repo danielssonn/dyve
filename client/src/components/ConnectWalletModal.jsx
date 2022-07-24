@@ -22,7 +22,7 @@ const ConnectWalletModal = () => {
             onClick={() => setShowModal(true)}
             className="py-2 px-3 font-semibold text-sm text-white bg-[#58DC4D] rounded-lg flex items-center hover:opacity-75"
             >
-        Connect
+        Connected
       </button>
       {showModal
         ? (

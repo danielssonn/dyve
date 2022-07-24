@@ -13,6 +13,14 @@ const NftDashboardReturn = () => {
     const params = useParams()
     const thisNFT = openListings.find(nft => nft.id === parseInt(params.id))
     const thisCollection = nftCollections.find(collection => collection.collection === params.collection)
+
+    // 👇️ initialize state to default checked radio button
+    const [selected, setSelected] = useState('in');
+  
+    const handleChange = event => {
+      console.log(event.target.value);
+      setSelected(event.target.value);
+    };
     
     return (
         <div className="">
@@ -42,24 +50,31 @@ const NftDashboardReturn = () => {
                         <input id="radio-dyve-in"
                             name="return-selection"
                             type="radio"
+                            value="in"
+                            checked={selected === 'in'}
+                            onChange={handleChange}
                             className="mr-2"
                         />
-                        
                         <label htmlFor="radio-dyve-in" name="return-selection"className="font-semibold text-lg">Dyve in!</label>
                     </div>
                     <p className="text-left text-sm mt-1">Let Dyve buy the required NFT and close the position for you!</p>
                     <p className="text-left text-xs mt-1">Best close price Dyve can find</p>
                     <h3 className="text-left text-3xl font-semibold">Ξ12.53</h3>
-                    <div className="width-full flex pt-5">
+                    <div className="">
+                        <div className="width-full flex pt-5">
                         <input id="radio-dyve-out"
-                            onClick={() => setHidden(s => !s)}
                             name="return-selection"
                             type="radio"
                             className="mr-2"
+                            value="out"
+                            onChange={handleChange}
+                            checked={selected === 'out'}
                         />
                         <label htmlFor="radio-dyve-out" className="font-semibold text-lg">Dyve out!</label>
                     </div>
                     <p className="text-left text-xs mt-1">Let me choose one from my wallet below.</p>
+                    
+                    </div>
                 </div>
                 <div className="w-1/2"><img src={dyveHelmet} alt="Dyve" className="mx-auto" /></div>
             </div>

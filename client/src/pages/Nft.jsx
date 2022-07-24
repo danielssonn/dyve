@@ -57,7 +57,7 @@ const Nft = () => {
             <div className="flex justify-end max-w-2xl m-auto pb-6 px-4 sm:px-6 lg:max-w-7xl lg:px-8 items-center">
                 <div className="text-left pr-6 w-full space-y-2">
                     <h2 className="font-semibold  text-3xl">Short</h2>
-                    <p className="text-sm">The lender has decided that you can borrow and short this NFT.</p>
+                    <p className="text-sm">The lender has decided that you can return, borrow and short this NFT, and return one with a set trait as noted below.</p>
                 </div>
             </div>
             {/* Main Body */}
@@ -88,9 +88,12 @@ const Nft = () => {
                                 <p>Premium/day</p>
                                 <h3 className="text-gray-700 font-semibold">Ξ{thisNFT.premium}</h3>
                             </div>
-                            <div className='w-full flex justify-between'>
-                                <p>Return Condition</p>
-                                <h3 className="text-gray-700 font-semibold">Any NFT</h3>
+                            <div>
+                                <div className='w-full flex justify-between'>
+                                    <p>Return condition</p>
+                                    <h3 className="text-gray-700 font-semibold pl-6">{thisNFT.return}</h3>
+                                </div>
+                                <div className="text-xs text-right">{thisNFT.trait}</div>
                             </div>
                         </div>
                     </div>
@@ -106,7 +109,7 @@ const Nft = () => {
                     </div>
                     <div className="width-full flex justify-end justify-between mt-4">
                         <h3 className="col-start-1 col-span-2 text-lg font-semibold">Return by</h3>
-                        <h3 className="col-start-5 col-span-2 text-right font-semibold text-[#0778E0]">2022/08/15 11:37</h3>
+                        <h3 className="col-start-5 col-span-2 text-right font-semibold text-[#0778E0]">2022/07/31</h3>
                     </div>
                     <div className="width-full flex justify-end justify-between my-4">
                         <h3 className="col-start-1 col-span-2 text-lg font-semibold">Total Premium</h3>

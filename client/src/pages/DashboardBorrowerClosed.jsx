@@ -33,8 +33,7 @@ const DashboardBorrowerClosed = () => {
                     <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">A-Z</div>
                 </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {closedBorrows.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
-                    <Link to={`/dashboard/${nft.collection}/${nft.id}`}>
+                    {closedBorrows.map((nft) => (<div key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
                         <div className="relative w-full mb-3 aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg xl:aspect-w-7 xl:aspect-h-8">
                             <img
                                 src={nft.imageSrc}
@@ -60,7 +59,7 @@ const DashboardBorrowerClosed = () => {
                                 <h3 className="mt-1 text-gray-700 font-semibold">{nft.collateral}</h3>
                             </div>
                             <div className='text-center w-1/3'>
-                                <p className="text-[#99B2C6] font-semibold text-xs">Best Close</p>
+                                <p className="text-[#99B2C6] font-semibold text-xs">Return Cost</p>
                                 <h3 className="mt-1 text-gray-700 font-semibold">{nft.bestClose}</h3>
                             </div>
                             <div className='text-right w-1/3'>
@@ -68,8 +67,7 @@ const DashboardBorrowerClosed = () => {
                                 <h3 className="mt-1 text-gray-700 font-semibold">{nft.return}</h3>
                             </div>
                         </div>
-                    </Link>
-                    </a>
+                    </div>
                     ))}
                 </div>
             </div>

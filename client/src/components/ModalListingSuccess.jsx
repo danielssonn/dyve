@@ -32,7 +32,7 @@ const ModalListingSuccess = () => {
                   </button>
                 </div>
                 <div className="relative p-3 flex-auto text-center space-y-8 m-5 mx-20 rounded-lg">
-                  <p>Your NFT Listing is now ready. You can view the NFT listing on the marmet or you can manage all your listings in your dashboard.</p>
+                  <p>Your NFT Listing is now ready. You can view the NFT listing on the market or you can manage all your listings in your dashboard.</p>
                   
                   <Link className="flex justify-center" to="/dashboard"><button
                     className="py-2 px-6 font-semibold text-lg text-[#0778E0] bg-[rgba(241,244,250,1)] rounded-lg flex items-center hover:opacity-75"

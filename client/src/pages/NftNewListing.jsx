@@ -119,12 +119,12 @@ const NftNewListing = () => {
                                 <input id="radio-return-same" name="return-selection" type="radio" className="mr-2" />
                                 <label for="radio-return-same" className="font-semibold text-sm">Any from Same Collection</label>
                             </div>
-                            <p className="text-left text-xs mt-1">In this senario the borrower can give back any NFT, but from the same collection.</p>
+                            <p className="text-left text-xs mt-1">In this senario the borrower can give back any NFT from the same collection.</p>
                             <div className="width-full flex mt-5">
                                 <input id="radio-return-criteria" name="return-selection" type="radio" className="mr-2" />
                                 <label for="radio-return-criteria" className="font-semibold text-sm">Set Criteria</label>
                             </div>
-                            <p className="text-left text-xs mt-1">In this scenario the borrower can give back any NFT but from the same collection with a Set Trait chosen by the lender.</p>
+                            <p className="text-left text-xs mt-1">In this scenario the borrower can give back any NFT from the same collection with a Set Trait chosen by the lender.</p>
                         </div>
                         <div className="py-4 w-1/2">
                             <h3 className="text-left text-lg font-semibold">Expiration</h3>

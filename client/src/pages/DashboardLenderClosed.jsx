@@ -33,9 +33,8 @@ const DashboardLenderClosed = () => {
                     <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">A-Z</div>
                 </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {closedListings.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
-                    <Link to={`/dashboard/${nft.collection}/${nft.id}`}>
-                        <div className="relative w-full mb-3 aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg xl:aspect-w-7 xl:aspect-h-8">
+                    {closedListings.map((nft) => (<div key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
+                    <div className="relative w-full mb-3 aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg xl:aspect-w-7 xl:aspect-h-8">
                             <img
                                 src={nft.imageSrc}
                                 alt={nft.imageAlt}
@@ -68,8 +67,7 @@ const DashboardLenderClosed = () => {
                                 <h3 className="mt-1 text-gray-700 font-semibold">{nft.return}</h3>
                             </div>
                         </div>
-                    </Link>
-                    </a>
+                    </div>
                     ))}
                 </div>
             </div>
