@@ -21,6 +21,16 @@ box-shadow:  25px 25px 49px #d4d4d4,
              -25px -25px 49px #ffffff;
 }
 
+.heroBg{
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f0f3f8+0,f0f3f8+51,e3eaf1+51,f0f3f8+100 */
+  background: #f0f3f8; /* Old browsers */
+  background: -moz-linear-gradient(top,  #f0f3f8 0%, #f0f3f8 51%, #e3eaf1 51%, #f0f3f8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #f0f3f8 0%,#f0f3f8 51%,#e3eaf1 51%,#f0f3f8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #f0f3f8 0%,#f0f3f8 51%,#e3eaf1 51%,#f0f3f8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f3f8', endColorstr='#f0f3f8',GradientType=0 ); /* IE6-9 */
+
+}
+
 .underline-behind{
   background: linear-gradient(#f7d011, #f7d011) 0 90% / 100% 12px no-repeat;
 }

@@ -12,7 +12,7 @@ const Gallery = () => {
         <div className="">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
-                    <h1 className="mt-4 text-xl text-gray-700">Gallery</h1>
+                    <h1 className="mt-4  text-3xl">Gallery</h1>
                 </div>
                 <div className="flex pb-10 space-x-4">
                     <p className='px-4 py-1 bg-white rounded-md'>Rarity</p>

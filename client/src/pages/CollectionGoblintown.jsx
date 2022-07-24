@@ -1,23 +1,26 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom'
 
-import {myNfts as nfts} from '../data';
+import { nfts as nftData } from '../data'
+import { nftCollections } from '../data';
 
-const MyNfts = () => {
-    return (
+const CollectionGoblintown = () => {
+
+  return (
         <div className="">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
-                    <h1 className="font-semibold text-gray-700 text-3xl">My NFT's</h1>
+                    <h1 className="font-semibold text-gray-700 text-3xl">Gallery</h1>
                 </div>
-                <div className="flex space-x-4 pb-10">
-                    <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">#Rarity</div>
-                    <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">Best Offer</div>
-                    <div className="bg-white p-2 px-4 rounded-xl font-semibold text-xs text-[#99B2C6] cursor-pointer hover:bg-[#012343] hover:text-white">A-Z</div>
+                <div className="flex pb-10 space-x-4">
+                    <p className='px-4 py-1 bg-white rounded-md'>Rarity</p>
+                    <p className='px-4 py-1 bg-white rounded-md'>Max Offer</p>
+                    <p className='px-4 py-1 bg-white rounded-md'>Sort</p>
+                    <p className='px-4 py-1 bg-white rounded-md'>Alphabetical</p>
                 </div>
                 <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {nfts.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
-                    <Link to={`/mynfts/${nft.collection}/${nft.id}`}>
+                    {nftData.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
+                    <Link to={`/${nft.collection}/${nft.id}`}>
                         <div className="relative w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                             <img
                                 src={nft.imageSrc}
@@ -31,16 +34,16 @@ const MyNfts = () => {
                         </div>
                         <div className='flex w-full space-x-3 pt-2 px-1'>
                             <div className='w-1/3'>
-                                <p className="text-[#99B2C6] font-semibold text-xs">Floor Price</p>
-                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.floorPrice}</h3>
+                                <p className="text-[#99B2C6] font-semibold text-xs">Collateral</p>
+                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.collateral}</h3>
                             </div>
                             <div className='text-center w-1/3'>
-                                <p className="text-[#99B2C6] font-semibold text-xs">Best Offer</p>
-                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.bestOffer}</h3>
+                                <p className="text-[#99B2C6] font-semibold text-xs">Max Offer</p>
+                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.maxOffer}</h3>
                             </div>
                             <div className='text-right w-1/3'>
-                                <p className="text-[#99B2C6] font-semibold text-xs">Rarity</p>
-                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.rarity}</h3>
+                                <p className="text-[#99B2C6] font-semibold text-xs">Premium</p>
+                                <h3 className="mt-1 text-gray-700 font-semibold">{nft.premium}</h3>
                             </div>
                         </div>
                     </Link>
@@ -49,7 +52,7 @@ const MyNfts = () => {
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
-export default MyNfts
+export default CollectionGoblintown

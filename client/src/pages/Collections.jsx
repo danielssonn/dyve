@@ -8,9 +8,9 @@ const Collections = () => {
         <div className="">
             <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="py-10">
-                    <h1 className="text-2xl font-semibold text-gray-700">Collection Rankings</h1>
+                    <h1 className="font-semibold text-gray-700 text-3xl">Collection Rankings</h1>
                 </div>
-                <div className="grid grid-cols-1 gap-y-10">
+                <div className="grid grid-cols-1 gap-y-4">
                 {nftCollections.map((nft) => (<a key={nft.id} href={nft.href} className="group bg-white p-3 rounded-xl">
                     <Link to={`/${nft.collection}`}>
                         <div className="flex gap-x-5">

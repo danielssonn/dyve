@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import CovalentLogo from '../img/covalent.svg'
 import NftPortLogo from '../img/nftport.svg'
 
-const ModalListingSuccess = () => {
+const ModalShortSuccess = () => {
   const [showModal, setShowModal] = useState(false)
   return (
     <>
@@ -12,7 +12,7 @@ const ModalListingSuccess = () => {
           onClick={() => setShowModal(true)}
           className="py-2 px-6 font-semibold text-white bg-[#58DC4D] rounded-lg flex items-center hover:opacity-75"
           >
-      Create Listing
+      Execute Position
     </button>
       {showModal
         ? (
@@ -32,9 +32,9 @@ const ModalListingSuccess = () => {
                   </button>
                 </div>
                 <div className="relative p-3 flex-auto text-center space-y-8 m-5 mx-20 rounded-lg">
-                  <p>Your NFT Listing is now ready. You can view the NFT listing on the market or you can manage all your listings in your dashboard.</p>
+                  <p>Your NFT position has sucessfully executed. You can manage all your positions in your dashboard.</p>
                   
-                  <Link className="flex justify-center" to="/dashboard"><button
+                  <Link className="flex justify-center" to="/dashboard/borrower/open"><button
                     className="py-2 px-6 font-semibold text-lg text-[#0778E0] bg-[rgba(241,244,250,1)] rounded-lg flex items-center hover:opacity-75"
                   >
                     Go to Dashboard
@@ -56,4 +56,4 @@ const ModalListingSuccess = () => {
   )
 }
 
-export default ModalListingSuccess
+export default ModalShortSuccess
